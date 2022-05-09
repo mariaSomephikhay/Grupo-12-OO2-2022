@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+
+<form action="#" th:action="@{/user/create}" th:object="${user}" method="post">
+	<p>user: <input type="text" th:field="*{user}" /></p>
+	<p>password: <input type="password" th:field="*{password}" /></p>
+	<input type="submit" value="crear"/>
+</form>
