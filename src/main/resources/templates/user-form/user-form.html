@@ -1,0 +1,74 @@
+<div th:with="disableFields=!${editMode} and ${#authorization.expression('hasRole(''ROLE_USER'')')}">
+	<form class="form" role="form" autocomplete="off"  th:object="${userForm}" th:action="${signup}?@{/signup}:(${editMode} ?@{/editUser} :@{/userForm})" method="post">
+		<input class="form-control" type=hidden th:field="${userForm.id}"  th:if="${editMode}">
+			<input class="form-control" type=hidden name="password" value="xxxx" th:if="${editMode}">
+				<div class="form-group row">
+					<label class="col-lg-3 col-form-label form-control-label">Username</label>
+					<div class="col-lg-9">
+						<input class="form-control" type="text" th:field="${userForm.username}" th:disabled="${disableFields}">
+							<div class="alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Nombre</label>
+						<div class="col-lg-9">
+							<input class="form-control" type="text" th:field="${userForm.nombre}" th:disabled="${disableFields}">
+								<div class="alert-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Nombre Error</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-lg-3 col-form-label form-control-label">Apellido</label>
+							<div class="col-lg-9">
+								<input class="form-control" type="text" th:field="${userForm.apellido}" th:disabled="${disableFields}">
+									<div class="alert-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Apellido Error</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-lg-3 col-form-label form-control-label">Email</label>
+								<div class="col-lg-9">
+									<input class="form-control" type="text" th:field="${userForm.email}" th:disabled="${disableFields}">
+										<div class="alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Tipo</label>
+									<div class="col-lg-9">
+										<input class="form-control" type="text" th:field="${userForm.tipo}" th:disabled="${disableFields}">
+											<div class="alert-danger" th:if="${#fields.hasErrors('tipo')}" th:errors="*{email}">Tipo Error</div>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-lg-3 col-form-label form-control-label">Dni</label>
+										<div class="col-lg-9">
+											<input class="form-control" type="number" th:field="${userForm.dni}" th:disabled="${disableFields}">
+												<div class="alert-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">Dni Error</div>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label th:text="Roles" class="col-lg-3 col-form-label form-control-label"></label>
+											<div class="col-lg-9">
+												<select class="form-control" th:size="${signup}?1:3" th:field="${userForm.roles}" th:disabled="${disableFields}">
+													<option th:each="role :${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+												</select>
+												<div class="alert-danger" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}">Name Error</div>
+											</div>
+										</div>
+										<div class="form-group row" th:if="${editMode==null or editMode==false}">
+											<label class="col-lg-3 col-form-label form-control-label">Password</label>
+											<div class="col-lg-9">
+												<input class="form-control" type="password" th:field="${userForm.password}" th:disabled="${disableFields}">
+													<div class="alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>
+												</div>
+											</div>
+											<div class="form-group row">
+												<div class="col-lg-12 text-center">
+													<a class="btn btn-secondary"  th:href="@{'/userForm/cancel'}">Cancelar</a>
+													<a class="btn btn-primary" th:href="@{'/userForm/pdfAdmin'}" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">Generar PDF Admin</a>
+													<a class="btn btn-primary"  th:href="@{'/userForm/pdfAuditores'}" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">Generar PDF Auditores</a>
+													<input type="submit" class="btn btn-primary" value="Save Changes" th:value="${editMode}?'Save User':'Create User'">
+													</div>
+												</div>
+												<div class="alert alert-danger text-center" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error</div>
+												<div class="alert alert-success text-center d-none" id="formSuccess" th:if="${editMode}" >Éxito</div>
+											</form>
+										</div>

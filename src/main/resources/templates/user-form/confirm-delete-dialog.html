@@ -1,0 +1,15 @@
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Confirmar</h5>
+      </div>
+      <div class="modal-body"> Quiere eliminar a este usuario? <input type="hidden" id="userIdHiddenInput" name="userIdHiddenInput" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" th:onclick="deleteUser()">Borrar Usuario</button>
+      </div>
+    </div>
+  </div>
+</div>
