@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+
+<form action="#" th:action="@{/aula/createTradicional}" th:object="${tradicional}" method="post">
+
+
+	<p>numero: <input type="text" th:field="*{numero}" /></p>
+	
+	<select th:field="*{edificio}"> 
+		<option th:each="e:${edificios}"
+			th:value="${(e.id)}"
+			th:text="${e.nombre}"
+	 	/>
+	</select>
+	
+	<p>cantidad de banco: <input type="text" th:field="*{cantBanco}" /></p>
+	<p>pizarron: <input type="text" th:field="*{pizarron}" /></p>
+	<p>tiene proyector: <input type="checkbox" name="tieneProyector" th:field="*{tieneProyector}" 
+	 th:value="false" id="tieneProyector"/></p>
+	
+	<input type="submit" value="crear"/>
+	
+	
+</form>

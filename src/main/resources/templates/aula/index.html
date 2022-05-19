@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+
+<table border="1px">
+	<thead>
+		<tr>
+			<th>numero</th>
+			<th>edificio</th>
+			<th>View</th>
+		</tr>
+	</thead>
+	<tbody>
+	
+		<tr th:each="aula : ${aulas}">
+			<td><span th:text="${aula.numero}" /></td>
+			<td><span th:text="${aula.edificio.nombre}" /></td>
+			<td><a th:href="@{/aula/{id}(id=${aula.id})}">View</a></td>
+		</tr>
+		
+	</tbody>
+</table>
+<a href="/aula/newLaboratorio">Create new Laboratorio</a>
+<a href="/aula/newTradicional">Create new Tradicional</a>

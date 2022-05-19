@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+
+<form action="#" th:action="@{/aula/create}" th:object="${aula}" method="post">
+
+
+	<p>numero: <input type="number" th:field="*{numero}" /></p>
+	
+	<select th:field="*{edificio}"> 
+		<option th:each="e:${edificios}"
+			th:value="${(e.id)}"
+			th:text="${e.nombre}"
+	 	/>
+	</select>
+	
+	<input type="submit" value="crear"/>
+	
+	
+</form>

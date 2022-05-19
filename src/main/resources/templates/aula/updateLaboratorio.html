@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+
+<form action="#" th:action="@{/aula/updateLaboratorio}" th:object="${laboratorio}" method="post">
+	<input type="hidden" th:field="*{id}" />
+		<p>numero: <input type="text" th:field="*{numero}" /></p>
+		
+		<select th:field="*{edificio}"> 
+		<option th:each="e:${edificios}"
+			th:value="${(e.id)}"
+			th:text="${e.nombre}"
+	 	/>
+		</select>
+		
+		<p>cantidad de pc: <input type="text" th:field="*{cantPc}" /></p>
+		<p>cantidad de sillas: <input type="text" th:field="*{cantSilla}" /></p>
+		
+	<input type="submit" value="Edit" />
+</form>
+
+<form action="#" th:action="@{/aula/deleteLaboratorio/{id}(id=${laboratorio.id})}" method="post">
+	<input type="submit" value="delete aula" />
+</form>
