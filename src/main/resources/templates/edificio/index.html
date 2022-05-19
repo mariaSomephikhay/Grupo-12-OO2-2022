@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+
+<table border="1px">
+	<thead>
+		<tr>
+			<th>edificio</th>
+			<th>View</th>
+		</tr>
+	</thead>
+	<tbody>
+	
+		<tr th:each="edificio : ${edificios}">
+			<td><span th:text="${edificio.nombre}" /></td>
+			<td><a th:href="@{/edificio/{id}(id=${edificio.id})}">View</a></td>
+		</tr>
+		
+	</tbody>
+</table>
+<a href="/edificio/new">Create new edificio</a>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+
+<form action="#" th:action="@{/edificio/update}" th:object="${edificio}" method="post">
+	<input type="hidden" th:field="*{id}" />
+		<p>edificio: <input type="text" th:field="*{nombre}" /></p>
+	<input type="submit" value="Edit" />
+</form>
+
+<form action="#" th:action="@{/edificio/delete/{id}(id=${edificio.id})}" method="post">
+	<input type="submit" value="delete edificio" />
+</form>

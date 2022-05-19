@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+
+<form action="#" th:action="@{/edificio/create}" th:object="${edificio}" method="post">
+	<p>edificio: <input type="text" th:field="*{nombre}" /></p>
+	<input type="submit" value="crear"/>
+</form>
