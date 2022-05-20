@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeleaf.org">
+
+<table border="1px">
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Profesores</th>
+		</tr>
+	</thead>
+	<tbody>
+	
+		<tr th:each="catedra : ${catedras}">
+			<td><span th:text="${catedra.materia}" /></td>
+			<td><span th:text="${catedra.profesores}" /></td>
+		</tr>
+		
+	</tbody>
+</table>
