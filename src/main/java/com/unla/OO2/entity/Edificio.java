@@ -12,13 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Data
 @Table(name="edificio")
 public class Edificio {
 	
@@ -31,5 +28,4 @@ public class Edificio {
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="edificio")
 	private Set<Aula> aulas;
-	
 }

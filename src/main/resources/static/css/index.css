@@ -10,6 +10,10 @@
 body {
 	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
 }
+a, a:hover, a:focus, a:active {
+text-decoration: none;
+color: inherit;
+}
 
 .container {
 	display: flex;

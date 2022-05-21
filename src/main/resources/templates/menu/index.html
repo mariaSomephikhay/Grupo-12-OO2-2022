@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Menú</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <noscript>
+      <link rel="stylesheet" th:href="@{/css/noscript.css}" />
+    </noscript>
+  </head>
+  <body class="is-preload">
+    <!-- Sidebar -->
+    <section id="sidebar">
+      <div class="inner">
+        <nav>
+          <ul>
+            <li><a href="#intro">Bienvenido</a></li>
+            <li><a href="#one">Gestor</a></li>
+            <!--/* <li><a href="#two"></a></li>
+            <li><a href="#three"></a></li>*/-->
+          </ul>
+        </nav>
+      </div>
+    </section>
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Intro -->
+      <section id="intro" class="wrapper style1 fullscreen fade-up">
+        <div class="inner">
+          <h1 class="maintitle">Bienvenido/a </h1>
+          <h1 class="maintitle" th:text="${#authentication.getPrincipal().getUsername()}"> </h1>
+          <ul class="actions">
+            <li><a th:href="@{/login}" sec:authorize="!isAuthenticated()" class="button scrolly">Iniciar sesión</a></li>
+          </ul>
+        </div>
+      </section>
+      <!-- One -->
+      <section id="one" class="wrapper style2 spotlights">
+        <section>
+          <a href="#" class="image"></a>
+          <div class="content">
+            <div class="inner">
+              <h2>Gestor de usuarios</h2>
+              <p>Sección para administrar usuarios</p>
+              <ul class="actions">
+                <li><a th:href="@{/userForm}" class="button">Ingresar</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section>
+          <a href="#" class="image"></a>
+          <div class="content">
+            <div class="inner">
+              <h2>Gestor de edificios</h2>
+              <p>Sección para administrar edificios</p>
+              <ul class="actions">
+                <li><a th:href="@{/edificio/index}" class="button">Ingresar</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section>
+          <a href="#" class="image"></a>
+          <div class="content">
+            <div class="inner">
+              <h2>Gestor de aulas</h2>
+              <p>Sección para administrar aulas</p>
+              <ul class="actions">
+                <li><a th:href="@{/aula/index}" class="button">Ingresar</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </section>
+      <!-- Two -->
+      <section id="two" class="wrapper style3 fade-up">
+      </section>
+      <!-- Three -->
+      <section id="three" class="wrapper style1 fade-up">
+      </section>
+    </div>
+    </div>
+    </section>
+    </div>
+    <!-- Footer -->
+    <footer id="footer" class="wrapper style1-alt">
+      <div class="inner">
+      </div>
+    </footer>
+    <!-- Scripts -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery.scrollex.min.js}"></script>
+    <script th:src="@{/js/jquery.scrolly.min.js}"></script>
+    <script th:src="@{/js/browser.min.js}"></script>
+    <script th:src="@{/js/breakpoints.min.js}"></script>
+    <script th:src="@{/js/util.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+  </body>
+</html>

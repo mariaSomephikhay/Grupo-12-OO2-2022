@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.unla.OO2.entity.Edificio;
 import com.unla.OO2.service.EdificioService;
-
-
 
 @Controller
 @RequestMapping("/edificio")
@@ -23,9 +20,15 @@ public class EdificioController {
 	@Autowired()
 	private EdificioService edificioService;
 	
+	private void baseAttributerForUserForm(Model model, Edificio edificio,String activeTab) {
+		model.addAttribute("index", edificio);
+		model.addAttribute(activeTab,"active");
+	}
+	
 	@GetMapping("/index")
 	public String index(Model model) {
-		List<Edificio> lst = edificioService.getAll();
+		baseAttributerForUserForm(model, new Edificio(), "listTab" );
+		List<Edificio> lst = edificioService.getAll();		
 		model.addAttribute("edificios",lst);
 		return "edificio/index";
 	}

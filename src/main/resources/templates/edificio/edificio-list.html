@@ -1,0 +1,21 @@
+<div class="table-responsive table-borderless">
+  <table id="userList" class="table table-bordered table-hover table-striped border-0">
+    <thead class="thead border-0" style="background-color: #A6A0E3;">
+      <tr>
+        <th scope="col">Edificio</th>
+        <th scope="col">Vista</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="edificio : ${edificios}">
+        <td th:text="${edificio.nombre}"></td>
+        <td>
+          <span>
+          <a th:href="@{/edificio/{id}(id=${edificio.id})}" style="color:#FFFFFF" ;>View</a>
+          </span>
+        </td>
+      </tr>
+      <button class="btn btn-lg btn-primary btn-block"  ><a href="/edificio/new" style="text-decoration: none; color: inherit;">Crear edificio</a></button>
+    </tbody>
+  </table>
+</div>

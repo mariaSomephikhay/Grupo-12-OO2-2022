@@ -26,15 +26,21 @@ import lombok.var;
 @Controller
 @RequestMapping("/aula")
 public class AulaController {
-	
 	@Autowired()
 	private AulaService aulaService;
 	 
 	@Autowired()
 	private EdificioService edificioService;
 	
+	
+	private void baseAttributerForUserForm(Model model, Aula aula,String activeTab) {
+		model.addAttribute("index", aula);
+		model.addAttribute(activeTab,"active");
+	}
+	
 	@GetMapping("/index")
 	public String index(Model model) {
+		baseAttributerForUserForm(model, new Aula(), "listTab" );
 		List<Aula> lst = aulaService.getAll();		
 		model.addAttribute("aulas",lst);
 		return "aula/index";
