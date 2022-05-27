@@ -76,8 +76,6 @@ public class UserController {
 		return "user-form/user-view";
 	}
 	
-	
-	
 	@PostMapping("/userForm")
 	public String createUser(@Valid @ModelAttribute("userForm")User user, BindingResult result, Model model) {
 		if(result.hasErrors()) {
