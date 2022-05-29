@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.unla.OO2.entity.Espacio;
 import com.unla.OO2.service.AulaService;
 import com.unla.OO2.service.EspacioService;
@@ -47,7 +49,7 @@ public class EspacioController {
 		YearMonth yearMonthObject = YearMonth.of(date1.getYear(),date1.getMonthValue());
 		int daysInMonth = yearMonthObject.lengthOfMonth(); 
 		System.out.println(daysInMonth);
-		int days = espacio.getFecha().getDayOfMonth();
+		int days = 0;
 		espacio.setFecha(date1);
 		while(days<daysInMonth) {
 			Espacio espacio2 = new Espacio();
@@ -56,23 +58,18 @@ public class EspacioController {
 			espacio2.setTurno(espacio.getTurno());
 			espacio2.setFecha(espacio.getFecha().plusDays(days));
 			service.insertOrUpdate(espacio2);
-			days=days+7;
+			days=days+1;
 		}
 		return "redirect:index";
 	}
 	
 	@PostMapping("/createEspacioCuatrimestre")
-	public String createEspacioCuatrimestre(@Valid @ModelAttribute("espacio") Espacio espacio) {
+	public String createEspacioCuatrimestre(@Valid @ModelAttribute("espacio") Espacio espacio, @RequestParam String fechaFin) {
 		LocalDate date1 = espacio.getFecha();
-		LocalDate date2 = LocalDate.of(espacio.getFecha().getYear(), espacio.getFecha().getMonthValue()+4, 1);
-		while (espacio.getFecha().isBefore(date2)) {
+		LocalDate finCuatrimestre = LocalDate.parse(fechaFin);
+		while (espacio.getFecha().isBefore(finCuatrimestre)) {
 			createEspacioMes(espacio);
-			int dia= 1;
-			date1= LocalDate.of(espacio.getFecha().getYear(), espacio.getFecha().getMonthValue()+1, dia);
-			while(!(espacio.getFecha().getDayOfWeek().equals(date1.getDayOfWeek()))) {
-				dia++;
-				date1= LocalDate.of(espacio.getFecha().getYear(), espacio.getFecha().getMonthValue()+1, dia);
-			}
+			date1= LocalDate.of(espacio.getFecha().getYear(), espacio.getFecha().getMonthValue()+1, 1);
 			espacio.setFecha(date1);
 		}
 		return "redirect:index";
