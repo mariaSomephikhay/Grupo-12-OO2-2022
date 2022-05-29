@@ -35,7 +35,6 @@
       background-color: #C6C4F4;
       }
     </style>
-  </head>
   <body>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,41 +48,66 @@
           <li class="nav-item border-0 dropdown-item">
             <a class="nav-link border-0" th:href="@{../menu/index}">Menú principal</a>
           </li>
-          <li class="nav-item border-0 dropdown-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-            <a class="nav-link border-0" th:classappend=" ${formTab}" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Registro</a>
-          </li>
           <li class="nav-item border-0 dropdown-item">
             <a class="nav-link border-0" href="#" th:href="@{/logout}">Salir</a>
           </li>
         </ul>
       </div>
     </div>
-    <div class="container border-0">
-      <div  id="myTab" role="tablist border-0">
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show" th:classappend=" ${listTab}" id="list" role="tabpanel" aria-labelledby="list-tab">
-            <div class="card border-0">
-              <div class="card-header border-0" style="background-color: #A6A0E3;">
-                <h4>Gestión de usuarios</h4>
-              </div>
+    <div class="tab-pane fade show border-0">
+      <div class="wrapper">
+        <h2 class="form-signin-heading">Gestor espacios</h2>
+        <div  id="myTab" role="tablist border-0">
+          <div class="tab-content" id="myTabContent">
+            <form th:action="@{/espacio/index}" method="get" class="form-control-sm form-inline">
               <div class="card-body">
-                <div th:include="user-form/user-list.html" th:remove="tag"></div>
+                <input type="text" name="idAula" th:value="${idAula}"  placeholder="ID aula" size="20" class="form-control"  >
+                <input type="text" name="turno" th:value="${turno}"  placeholder="Turno" size="20" class="form-control">
+                <input type="text" name="fecha" th:value="${fecha}"  placeholder="Fecha" size="20" class="form-control">
+                <button type="submit" class="btn btn-info"  >Buscar</button>
               </div>
-            </div>
           </div>
-          <div class="tab-pane fade show border-0" th:classappend=" ${formTab}" id="form" role="tabpanel" aria-labelledby="form-tab">
-            <div class="card border-0">
-              <div class="card-header border-0" style="background-color: #A6A0E3;">
-                <h4>Registro de usuarios</h4>
-              </div>
-              <div class="card-body">
-                <div th:include="user-form/user-form.html" th:remove="tag" ></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+          <table class="table table-bordered ">
+          <thead>
+          <tr>
+	          <th scope="col" style="background-color: white;">Fecha</th>
+	          <th scope="col" style="background-color: white;">Libre</th>
+	          <th scope="col" style="background-color: white;">Turno</th>
+	          <th scope="col" style="background-color: white;">ID aula</th>
+	          <th scope="col" style="background-color: white;">Número de aula</th>
+          </tr>
+          </thead>
+          <tbody>
+	          <tr th:each="espacio : ${lstEspacio}" th:field="${espacio}">
+	          <td th:text="${espacio.fecha}"></td>
+	          <td th:text="${espacio.libre}"></td>
+	          <td th:text="${espacio.turno}"></td>
+	          <td th:text="${espacio.aula.id}"></td>
+	          <td th:text="${espacio.aula.numero}"></td>
+          </tr>
+          </form>
+          <div th:if="${#lists.isEmpty(lstEspacio)}">
+	          <div class="tab-pane fade show border-0" id="showEspacio">
+		          <div class="wrapper">
+			          <form action="#" th:action="@{/espacio/createEspacio}" th:object="${espacio}" method="post" >
+				          <h2 class="form-signin-heading">El espacio está disponible</h2>
+				          <div class="card-body">
+					          <input type="date" class="form-control search" th:field="*{fecha}" readonly />
+					          <input type="boolean" class="form-control" th:field="*{libre}" value="true" readonly />
+					          <input type="text" class="form-control" th:field="*{turno}" readonly/>
+					          <div>Aula</div>
+					          <select readonly th:field="*{aula}" >
+					         	 <option th:each="a:${aulas}" th:value="${(a.id)}" th:text="${a.numero}"  th:if="${a.id} == ${idAula}"> />
+					          </select>
+				          </div>
+				          <button class="btn btn-lg btn-primary btn-block" type="submit" >Crear</button>
+				          <button class="btn btn-lg btn-primary btn-block" type="submit" onclick='this.form.action="/espacio/createEspacioMes";'>Crear para todo el mes</button>
+			          </form>
+		        	</div>
+	          	</div>
+	         </div>
+	      </div>
+	   </div>
     </div>
-    <div th:include="user-form/confirm-delete-dialog.html" th:remove="tag"></div>
   </body>
 </html>
