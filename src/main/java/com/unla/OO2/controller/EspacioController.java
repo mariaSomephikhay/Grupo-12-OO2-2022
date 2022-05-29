@@ -47,7 +47,7 @@ public class EspacioController {
 		YearMonth yearMonthObject = YearMonth.of(date1.getYear(),date1.getMonthValue());
 		int daysInMonth = yearMonthObject.lengthOfMonth(); 
 		System.out.println(daysInMonth);
-		int days = 0;
+		int days = espacio.getFecha().getDayOfMonth();
 		espacio.setFecha(date1);
 		while(days<daysInMonth) {
 			Espacio espacio2 = new Espacio();
@@ -56,7 +56,24 @@ public class EspacioController {
 			espacio2.setTurno(espacio.getTurno());
 			espacio2.setFecha(espacio.getFecha().plusDays(days));
 			service.insertOrUpdate(espacio2);
-			days=days+1;
+			days=days+7;
+		}
+		return "redirect:index";
+	}
+	
+	@PostMapping("/createEspacioCuatrimestre")
+	public String createEspacioCuatrimestre(@Valid @ModelAttribute("espacio") Espacio espacio) {
+		LocalDate date1 = espacio.getFecha();
+		LocalDate date2 = LocalDate.of(espacio.getFecha().getYear(), espacio.getFecha().getMonthValue()+4, 1);
+		while (espacio.getFecha().isBefore(date2)) {
+			createEspacioMes(espacio);
+			int dia= 1;
+			date1= LocalDate.of(espacio.getFecha().getYear(), espacio.getFecha().getMonthValue()+1, dia);
+			while(!(espacio.getFecha().getDayOfWeek().equals(date1.getDayOfWeek()))) {
+				dia++;
+				date1= LocalDate.of(espacio.getFecha().getYear(), espacio.getFecha().getMonthValue()+1, dia);
+			}
+			espacio.setFecha(date1);
 		}
 		return "redirect:index";
 	}
