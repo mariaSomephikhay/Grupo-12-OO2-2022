@@ -94,7 +94,7 @@
 					    <option th:value="100">100%</option>
 					 </select>
        		<button  th:if="${curso.asignado==false}" class="btn btn-lg btn-primary btn-block" type="submit">Editar</button>
-      		<span th:if="${final.asignado!=false}" >No se puede editar ni eliminar la nota pedido porque ya fue asignada</span>
+      		<span th:if="${curso.asignado!=false}" >No se puede editar ni eliminar la nota pedido porque ya fue asignada</span>
       	</form>
       	
 	      	<form th:if="${curso.asignado==false}" action="#" class="btn btn-lg btn-primary btn-block" th:action="@{/notaPedido/deleteCurso/{id}(id=${curso.id})}" method="post" >
