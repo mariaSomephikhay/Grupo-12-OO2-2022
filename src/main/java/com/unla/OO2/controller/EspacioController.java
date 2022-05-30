@@ -54,7 +54,7 @@ public class EspacioController {
 		while(days<daysInMonth) {
 			Espacio espacio2 = new Espacio();
 			espacio2.setAula(espacio.getAula());
-			espacio2.setLibre(espacio.isLibre());
+			espacio2.setLibre(true);
 			espacio2.setTurno(espacio.getTurno());
 			espacio2.setFecha(espacio.getFecha().plusDays(days));
 			service.insertOrUpdate(espacio2);
