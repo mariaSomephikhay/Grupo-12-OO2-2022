@@ -62,8 +62,8 @@
             <form th:action="@{/espacio/index}" method="get" class="form-control-sm form-inline">
               <div class="card-body">
                 <input type="text" name="idAula" th:value="${idAula}"  placeholder="ID aula" size="20" class="form-control"  >
-                <input type="text" name="turno" th:value="${turno}"  placeholder="Turno" size="20" class="form-control">
-                <input type="date" name="fecha" th:value="${fecha}"  placeholder="Fecha" size="20" class="form-control" >
+-               <input type="text" name="turno" th:value="${turno}"  placeholder="Turno" size="20" class="form-control">
+-               <input type="date" name="fecha" th:value="${fecha}"  placeholder="Fecha" size="20" class="form-control" >
                 <button type="submit" class="btn btn-info"  >Buscar</button>
               </div>
           </div>
@@ -97,7 +97,7 @@
 					          <input type="text" class="form-control" th:field="*{turno}" readonly/>
 					          <div>Aula</div>
 					          <select readonly th:field="*{aula}" >
-					         	 <option th:each="a:${aulas}" th:value="${(a.id)}" th:text="${a.numero}"  th:if="${a.id} == ${idAula}"> />
+					                 <option th:each="a:${aulas}" th:value="${(a.id)}" th:text="${a.numero}"  th:if="${a.id} == ${idAula}"> />
 					          </select>
 				          </div>
 				          <button class="btn btn-lg btn-primary btn-block" type="submit" >Crear</button>
