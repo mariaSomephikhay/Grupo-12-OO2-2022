@@ -26,7 +26,7 @@ public class EspacioController {
 	AulaService aservice;
 
 	@RequestMapping("/index")
-	public String home(Espacio espacio, Model model, @Param("numeroAula") String idAula, @Param("turno") String turno, @Param("fecha") String fecha) {
+	public String home(Espacio espacio, Model model, @Param("idAula") String idAula, @Param("turno") String turno, @Param("fecha") String fecha) {
 		List<Espacio> lstEspacio=service.listAll(idAula, turno, fecha);
 		model.addAttribute("lstEspacio", lstEspacio);
 		model.addAttribute("aulas", aservice.getAll());

@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 import com.unla.OO2.entity.Espacio;
 
 public interface EspacioRepository extends JpaRepository<Espacio, Integer>{
-	@Query(value = "select * from espacio inner join aula on espacio.aula_id=aula.id where aula.id= :idAula and espacio.turno=:turno and espacio.fecha=:fecha", nativeQuery = true)
+	@Query(value = "select * from espacio inner join aula on espacio.aula_id=aula.id where aula.numero = :idAula and espacio.turno=:turno and espacio.fecha=:fecha", nativeQuery = true)
 	List<Espacio> traer(@Param("idAula") String idAula, @Param("turno") String turno, @Param("fecha") String fecha);
 }
