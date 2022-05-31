@@ -79,8 +79,10 @@
             <input type="text" class="form-control" th:field="*{observaciones}"/>
             <div>Codigo de curso</div>
             <input type="text" class="form-control" th:field="*{codCurso}"/>
-            <div>Fecha de inicio</div>
+            <div>Fecha de inicio (El dia que comienza las clases el curso, no el inicio del cautrimestre)</div>
             <input type="date" class="form-control" th:field="*{fechaInicio}"/>
+             <div>Fecha de fin de cuatrimestre</div>
+            <input type="date" class="form-control" th:field="*{fechaFin}"/>
             <div>Porcentaje de presencialidad</div>
             <select th:field="*{porcPresencialidad}">
               <!-- Opciones de la lista -->

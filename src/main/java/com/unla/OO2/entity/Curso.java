@@ -20,6 +20,9 @@ public class Curso extends NotaPedido {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="fechaInicio")
 	private LocalDate fechaInicio;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name="fechaFin")
+	private LocalDate fechaFin;
 	//25% 50% 100%
 	@Column(name="porcPresencialidad")
 	private int porcPresencialidad;
