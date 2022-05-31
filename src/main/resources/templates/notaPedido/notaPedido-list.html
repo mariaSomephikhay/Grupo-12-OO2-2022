@@ -1,52 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="htpp://www.thymeleaf.org">
-
-	<table id="userList" class="table table-bordered table-hover table-striped border-0">
-		<div>
-			
-			
-		<thead class="thead border-0" style="background-color: #A6A0E3;">
-			<tr>
-				<th>Fecha de pedido</th>
-				<th>Pedido para</th>
-				<th>Turno solicitado</th>
-				<th>Aula solicitada</th>
-				<th>Cantidad de estudiantes</th>
-				<th>Materia</th>
-				<th>Observaciones</th>
-				<th>Asignada</th>
-				<th>Vista</th>
-				
-			</tr>
-		</thead>
-		<tbody>
-		
-			<tr th:each="nota : ${notas}">
-				<td><span th:text="${nota.fechaCreacion}" /></td>
-				<td th:if="${nota instanceof T(com.unla.OO2.entity.Final)}">
-	          		<span>Mesa de Final</span>
-	        	</td>
-	        	<td th:if="${nota instanceof T(com.unla.OO2.entity.Curso)}">
-	          		<span>Cursada</span>
-	        	</td>
-				<td><span th:text="${nota.turno}" /></td>
-				<td><span th:text="${nota.aula}" /></td>
-				<td><span th:text="${nota.cantEstudiantes}" /></td>
-				<td><span th:text="${nota.catedra.materia.materia}" /></td>
-				<td><span th:text="${nota.observaciones}" /></td>
-				<td><span th:text="${nota.asignado}" /></td>
-				<td><a th:href="@{/notaPedido/{id}(id=${nota.id})}" style="color:#FFFFFF" ;>View</a></td>
-			</tr>
-		<button class="btn btn-lg btn-primary btn-block">
-			<a href="/notaPedido/newFinal" style="text-decoration: none; color: inherit;">
-				Crear nota de pedido para mesa de final
-			</a>
-		</button>
-		<button class="btn btn-lg btn-primary btn-block">
-			<a href="/notaPedido/newCurso" style="text-decoration: none; color: inherit;">
-				Crear nota de pedido para cursada
-			</a>
-		</button>
-		</tbody>
-	</table>
+  <table id="userList" class="table table-bordered table-hover table-striped border-0">
+    <div>
+    <thead class="thead border-0" style="background-color: #A6A0E3;">
+      <tr>
+        <th>Fecha de pedido</th>
+        <th>Pedido para</th>
+        <th>Turno solicitado</th>
+        <th>Aula solicitada</th>
+        <th>Cantidad de estudiantes</th>
+        <th>Materia</th>
+        <th>Observaciones</th>
+        <th>Asignada</th>
+        <th>Vista</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="nota : ${notas}">
+        <td><span th:text="${nota.fechaCreacion}" /></td>
+        <td th:if="${nota instanceof T(com.unla.OO2.entity.Final)}">
+          <span>Mesa de Final</span>
+        </td>
+        <td th:if="${nota instanceof T(com.unla.OO2.entity.Curso)}">
+          <span>Cursada</span>
+        </td>
+        <td><span th:text="${nota.turno}" /></td>
+        <td><span th:text="${nota.aula}" /></td>
+        <td><span th:text="${nota.cantEstudiantes}" /></td>
+        <td><span th:text="${nota.catedra.materia.materia}" /></td>
+        <td><span th:text="${nota.observaciones}" /></td>
+        <td><span th:text="${nota.asignado}" /></td>
+        <td><a th:href="@{/notaPedido/{id}(id=${nota.id})}" style="color:#FFFFFF" ;>View</a></td>
+      </tr>
+      <button class="btn btn-lg btn-primary btn-block">
+      <a href="/notaPedido/newFinal" style="text-decoration: none; color: inherit;">
+      Crear nota de pedido para mesa de final
+      </a>
+      </button>
+      <button class="btn btn-lg btn-primary btn-block">
+      <a href="/notaPedido/newCurso" style="text-decoration: none; color: inherit;">
+      Crear nota de pedido para cursada
+      </a>
+      </button>
+    </tbody>
+  </table>
 </html>

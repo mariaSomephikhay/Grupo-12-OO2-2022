@@ -1,17 +1,15 @@
 package com.unla.OO2.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.unla.OO2.entity.Catedra;
 import com.unla.OO2.repository.CatedraRepository;
 
 @Service("catedraService")
 public class CatedraServiceImpl implements ICatedraService {
-	
-	@Autowired()
+
+	@Autowired
 	private CatedraRepository catedraRepository;
 
 	@Override

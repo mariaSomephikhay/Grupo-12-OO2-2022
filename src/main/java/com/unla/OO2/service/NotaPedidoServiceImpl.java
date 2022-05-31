@@ -1,19 +1,17 @@
 package com.unla.OO2.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.unla.OO2.entity.NotaPedido;
 import com.unla.OO2.repository.NotaPedidoRepository;
 
 @Service("notaPedidoService")
 public class NotaPedidoServiceImpl implements INotaPedidoService{
-	
-	@Autowired()
+
+	@Autowired
 	private NotaPedidoRepository notaPedidoRepository;
-	
+
 	@Override
 	public List<NotaPedido> getAll() {
 		return notaPedidoRepository.findAll();
@@ -27,7 +25,6 @@ public class NotaPedidoServiceImpl implements INotaPedidoService{
 		}catch (Exception he) {
 			return false;
 		}
-		
 	}
 
 	@Override
@@ -44,6 +41,5 @@ public class NotaPedidoServiceImpl implements INotaPedidoService{
 			return false;
 		}
 	}
-	
 
 }

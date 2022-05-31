@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.unla.OO2.entity.Espacio;
 import com.unla.OO2.service.AulaService;
 import com.unla.OO2.service.EspacioService;
@@ -20,9 +19,10 @@ import com.unla.OO2.service.EspacioService;
 @Controller
 @RequestMapping("/espacio")
 public class EspacioController {
-	@Autowired()
+
+	@Autowired
 	EspacioService service;
-	@Autowired()
+	@Autowired
 	AulaService aservice;
 
 	@RequestMapping("/index")
@@ -38,7 +38,6 @@ public class EspacioController {
 
 	@PostMapping("/createEspacio")
 	public String createEspacio(@Valid @ModelAttribute("espacio") Espacio espacio) {
-		//espacio.setFecha(espacio.getFecha().plusDays(1));
 		service.insertOrUpdate(espacio);
 		return "redirect:index";
 	}
@@ -48,7 +47,6 @@ public class EspacioController {
 		LocalDate date1 = LocalDate.of(espacio.getFecha().getYear(), espacio.getFecha().getMonthValue(), 1);
 		YearMonth yearMonthObject = YearMonth.of(date1.getYear(),date1.getMonthValue());
 		int daysInMonth = yearMonthObject.lengthOfMonth(); 
-		System.out.println(daysInMonth);
 		int days = 0;
 		espacio.setFecha(date1);
 		while(days<daysInMonth) {
@@ -62,12 +60,12 @@ public class EspacioController {
 		}
 		return "redirect:index";
 	}
-	
+
 	@PostMapping("/createEspacioCuatrimestre")
 	public String createEspacioCuatrimestre(@Valid @ModelAttribute("espacio") Espacio espacio, @RequestParam String fechaFin) {
 		LocalDate date1 = espacio.getFecha();
 		LocalDate finCuatrimestre = LocalDate.parse(fechaFin);
-		while (espacio.getFecha().isBefore(finCuatrimestre)) {
+		while(espacio.getFecha().isBefore(finCuatrimestre)) {
 			createEspacioMes(espacio);
 			date1= LocalDate.of(espacio.getFecha().getYear(), espacio.getFecha().getMonthValue()+1, 1);
 			espacio.setFecha(date1);

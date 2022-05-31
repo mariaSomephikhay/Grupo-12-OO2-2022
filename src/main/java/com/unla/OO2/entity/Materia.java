@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import lombok.Data;
 
 @Entity 
@@ -24,5 +23,4 @@ public class Materia {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="carrera_id", nullable=false)
 	private Carrera carrera;
-
 }

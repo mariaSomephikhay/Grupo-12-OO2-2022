@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,10 +21,8 @@ public class Profesor {
 	private String nombre;
 	@Column(name="apellido")
 	private String apellido;
-	
 	@Override
 	public String toString() {
 		return nombre +" "+ apellido ;
 	}
-
 }

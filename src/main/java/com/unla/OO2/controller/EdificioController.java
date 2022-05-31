@@ -16,15 +16,15 @@ import com.unla.OO2.service.EdificioService;
 @Controller
 @RequestMapping("/edificio")
 public class EdificioController {
-	
-	@Autowired()
+
+	@Autowired
 	private EdificioService edificioService;
-	
+
 	private void baseAttributerForUserForm(Model model, Edificio edificio,String activeTab) {
 		model.addAttribute("index", edificio);
 		model.addAttribute(activeTab,"active");
 	}
-	
+
 	@GetMapping("/index")
 	public String index(Model model) {
 		baseAttributerForUserForm(model, new Edificio(), "listTab" );
@@ -32,31 +32,31 @@ public class EdificioController {
 		model.addAttribute("edificios",lst);
 		return "edificio/index";
 	}
-	
+
 	@GetMapping("/new")
 	public String create(Model model) {
 		model.addAttribute("edificio", new Edificio());
 		return "edificio/new";
 	}
-	
+
 	@PostMapping("/create")
 	public String create(@ModelAttribute("aula") Edificio edificio, Model model) {
 		edificioService.insertOrUpdate(edificio);
 		return "redirect:index";
 	}
-	
+
 	@GetMapping("/{id}")
 	public String get(Model model, @PathVariable("id") int id) {
 		model.addAttribute("edificio", edificioService.findById(id));
 		return "edificio/update";
 	}
-	
+
 	@PostMapping("/update")
 	public String update(@ModelAttribute("edificio") Edificio edificio) {
 		edificioService.insertOrUpdate(edificio);
 		return "redirect:index";
 	}
-	
+
 	@PostMapping("/delete/{id}")
 	public String delete(@PathVariable("id") int id) {
 		edificioService.remove(id);

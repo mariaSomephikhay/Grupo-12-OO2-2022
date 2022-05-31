@@ -1,19 +1,17 @@
 package com.unla.OO2.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.unla.OO2.entity.Edificio;
 import com.unla.OO2.repository.EdificioRepository;
 
 @Service("edificioService")
 public class EdificioServiceImpl implements EdificioService {
 
-	@Autowired()
+	@Autowired
 	private EdificioRepository edificioRepository;
-	
+
 	@Override
 	public List<Edificio> getAll() {
 		return edificioRepository.findAll();

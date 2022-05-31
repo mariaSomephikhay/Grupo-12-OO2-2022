@@ -1,26 +1,22 @@
 package com.unla.OO2.service;
 
-
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.unla.OO2.repository.AulaRepository;
 import com.unla.OO2.entity.Aula;
 
 @Service("aulaService")
 public class AulaServiceImpl implements AulaService{
-	
-	@Autowired()
+
+	@Autowired
 	private AulaRepository aulaRepository;
-	
+
 	@Override
 	public List<Aula> getAll(){
 		return aulaRepository.findAll();
 	}
-	
+
 	@Override
 	public boolean insertOrUpdate(Aula aula) {
 		try {

@@ -1,19 +1,17 @@
 package com.unla.OO2.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.unla.OO2.entity.Departamento;
 import com.unla.OO2.repository.DepartamentoRepository;
 
 @Service("departamentoService")
 public class DepartamentoServiceImpl implements IDepartamentoService {
 
-	@Autowired()
+	@Autowired
 	private DepartamentoRepository departamentoRepository;
-	
+
 	@Override
 	public List<Departamento> getAll() {
 		return departamentoRepository.findAll();

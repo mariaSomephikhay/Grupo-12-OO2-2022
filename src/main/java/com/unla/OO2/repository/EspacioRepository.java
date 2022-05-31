@@ -1,9 +1,9 @@
 package com.unla.OO2.repository;
+
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
 import com.unla.OO2.entity.Espacio;
 
 public interface EspacioRepository extends JpaRepository<Espacio, Integer>{

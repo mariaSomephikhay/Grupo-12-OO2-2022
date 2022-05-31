@@ -35,7 +35,7 @@
       background-color: #C6C4F4;
       }
     </style>
-     <body>
+  <body>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
@@ -54,7 +54,7 @@
         </ul>
       </div>
     </div>
- <div class="container border-0">
+    <div class="container border-0">
       <div  id="myTab" role="tablist border-0">
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show" th:classappend=" ${listTab}" id="list" role="tabpanel" aria-labelledby="list-tab">

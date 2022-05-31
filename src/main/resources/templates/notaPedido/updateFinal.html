@@ -56,35 +56,35 @@
       </div>
     </div>
     <div class="tab-pane fade show border-0">
-      <div class="wrapper">
-        <form action="#" th:action="@{/notaPedido/updateFinal}" th:object="${final}" method="post" >
+    <div class="wrapper">
+      <form action="#" th:action="@{/notaPedido/updateFinal}" th:object="${final}" method="post" >
         <h2 class="form-signin-heading">Modificar nota de pedido para mesa de final</h2>
         <div class="card-body">
           <input type="hidden" th:field="*{id}" />
-          	<div>Fecha de pedido</div>
+          <div>Fecha de pedido</div>
           <span th:text="*{fechaCreacion}" />
-           <div>Turno</div>
-		   <select th:field="*{turno}">
-			<!-- Opciones de la lista -->
-			<option th:value="M" selected>Mañana</option>
-			<option th:value="T">Tarde</option>
-			<option th:value="N">Noche</option>
-		    </select>
-			<div>Aula</div>
-		    <input type="text" class="form-control" th:field="*{aula}"/>
-		    <div>Cantidad de estudiantes</div>
-		     <input type="text" class="form-control" th:field="*{cantEstudiantes}"/>
-		    <div>Catedras</div>
-		    <select th:field="*{catedra}">
-		     	<option th:each="c:${catedras}" th:value="${(c.id)}" th:text="${c.materia.materia}"/>
-		     </select>
-		     <div>Observaciones</div>
-		     <input type="text" class="form-control" th:field="*{observaciones}"/>
-		     <div>Fecha de examen</div>
-		     <input type="date" class="form-control" th:field="*{fechaExamen}"/>
+          <div>Turno</div>
+          <select th:field="*{turno}">
+            <!-- Opciones de la lista -->
+            <option th:value="M" selected>Mañana</option>
+            <option th:value="T">Tarde</option>
+            <option th:value="N">Noche</option>
+          </select>
+          <div>Aula</div>
+          <input type="text" class="form-control" th:field="*{aula}"/>
+          <div>Cantidad de estudiantes</div>
+          <input type="text" class="form-control" th:field="*{cantEstudiantes}"/>
+          <div>Catedras</div>
+          <select th:field="*{catedra}">
+            <option th:each="c:${catedras}" th:value="${(c.id)}" th:text="${c.materia.materia} + ' ' + ${c.getProfesores()}">
+          </select>
+          <div>Observaciones</div>
+          <input type="text" class="form-control" th:field="*{observaciones}"/>
+          <div>Fecha de examen</div>
+          <input type="date" class="form-control" th:field="*{fechaExamen}"/>
           <button th:if="${final.asignado==false}" class="btn btn-lg btn-primary btn-block" type="submit">Editar</button>
           <span th:if="${final.asignado!=false}" >No se puede editar ni eliminar la nota pedido porque ya fue asignada</span>
-      	</form>
+      </form>
       </div>
       <form th:if="${final.asignado==false}" action="#" class="btn btn-lg btn-primary btn-block" th:action="@{/notaPedido/deleteFinal/{id}(id=${final.id})}" method="post">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Eliminar</button>

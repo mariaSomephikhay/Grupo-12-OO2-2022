@@ -1,19 +1,17 @@
 package com.unla.OO2.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.unla.OO2.entity.Carrera;
 import com.unla.OO2.repository.CarreraRepository;
 
 @Service("carreraService")
 public class CarreraServiceImpl implements ICarreraService{
 
-	@Autowired()
+	@Autowired
 	private CarreraRepository carreraRepository;
-	
+
 	@Override
 	public List<Carrera> getAll() {
 		return carreraRepository.findAll();
@@ -43,6 +41,5 @@ public class CarreraServiceImpl implements ICarreraService{
 			return false;
 		}
 	}
-	
-}
 
+}

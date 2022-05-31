@@ -1,4 +1,5 @@
 package com.unla.OO2.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import com.unla.OO2.service.UserService;
 @Controller
 @RequestMapping("/menu")
 public class MenuController {
+
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -21,20 +23,20 @@ public class MenuController {
 	public String index(Model model) {
 		return "menu/index";
 	}
-	
+
 	@GetMapping("/userForm")
 	public String userForm(Model model) {
 		return "../user-form/user-view";
 	}
-	
+
 	@GetMapping("/aula/index")
 	public String aulaindex(Model model) {
 		return "..aula/index";
 	}
-	
+
 	@GetMapping("/edificio/index")
 	public String edificioindex(Model model) {
 		return "..edificio/index";
 	}
-	
+
 }

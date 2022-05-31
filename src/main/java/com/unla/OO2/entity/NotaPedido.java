@@ -26,34 +26,24 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="notaPedido")
 public class NotaPedido {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 	@CreationTimestamp
 	@Column(name="fechaCreacion")
 	private LocalDate fechaCreacion;
-	
 	@Column(name="turno")
 	private char turno;
-	
 	@Column(name="aula")
 	private String aula;
-	
 	@Column(name="cantEstudiantes")
 	private int cantEstudiantes;
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="catedra_id", nullable=true)
 	private Catedra catedra;
-	
 	@Column(name="observaciones")
 	private String observaciones;
-	
 	//al crearse una nota pedido se guarda false
 	@Column(name="asignado")
 	private boolean asignado;
-	
-	
 }

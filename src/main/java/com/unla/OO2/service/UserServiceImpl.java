@@ -109,4 +109,5 @@ public class UserServiceImpl implements UserService{
 		User user = getUserById(id);
 		repository.delete(user);
 	}
+
 }

@@ -1,11 +1,7 @@
 package com.unla.OO2.controller;
 
-
-
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,24 +10,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.unla.OO2.entity.Aula;
 import com.unla.OO2.entity.Laboratorio;
 import com.unla.OO2.entity.Tradicional;
 import com.unla.OO2.service.AulaService;
 import com.unla.OO2.service.EdificioService;
-
 import lombok.var;
 
 @Controller
 @RequestMapping("/aula")
 public class AulaController {
-	@Autowired()
+
+	@Autowired
 	private AulaService aulaService;
 
-	@Autowired()
+	@Autowired
 	private EdificioService edificioService;
-
 
 	private void baseAttributerForUserForm(Model model, Aula aula,String activeTab) {
 		model.addAttribute("index", aula);
@@ -75,10 +69,7 @@ public class AulaController {
 	@GetMapping("/{id}")
 	public String get(Model model, @PathVariable("id") int id) {
 		var verificar = aulaService.findById(id);
-
-
 		model.addAttribute("edificios", edificioService.getAll());
-
 		if(verificar instanceof Tradicional) {
 			model.addAttribute("tradicional", (Tradicional)verificar);
 			return "aula/updateTradicional";
@@ -111,7 +102,5 @@ public class AulaController {
 		aulaService.remove(id);
 		return "redirect:/aula/index";
 	}
-
-
 
 }

@@ -8,7 +8,7 @@ import com.unla.OO2.repository.EspacioRepository;
 @Service
 public class EspacioServiceImpl implements EspacioService {
 
-	@Autowired()
+	@Autowired
 	private EspacioRepository espacioRepository;
 
 	@Override
@@ -39,4 +39,5 @@ public class EspacioServiceImpl implements EspacioService {
 			return false;
 		}
 	}
+	
 }

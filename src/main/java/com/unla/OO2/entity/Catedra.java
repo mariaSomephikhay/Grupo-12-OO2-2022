@@ -1,7 +1,6 @@
 package com.unla.OO2.entity;
 
 import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,7 +11,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
-
 import lombok.Data;
 
 @Entity 
@@ -32,5 +30,4 @@ public class Catedra {
 	public Set<Profesor> getProfesores() {
 		return profesores;
 	}
-
 }

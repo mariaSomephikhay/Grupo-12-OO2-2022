@@ -1,19 +1,17 @@
 package com.unla.OO2.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.unla.OO2.entity.Profesor;
 import com.unla.OO2.repository.ProfesorRepository;
 
 @Service("profesorService")
 public class ProfesorServiceImpl implements IProfesorService{
 
-	@Autowired()
+	@Autowired
 	private ProfesorRepository profesorRepository;
-	
+
 	@Override
 	public List<Profesor> getAll() {
 		return profesorRepository.findAll();

@@ -1,17 +1,15 @@
 package com.unla.OO2.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.unla.OO2.entity.Materia;
 import com.unla.OO2.repository.MateriaRepository;
 
 @Service("materiaService")
 public class MateriaServiceImpl implements IMateriaService {
-	
-	@Autowired()
+
+	@Autowired
 	private MateriaRepository materiaRepository;
 
 	@Override

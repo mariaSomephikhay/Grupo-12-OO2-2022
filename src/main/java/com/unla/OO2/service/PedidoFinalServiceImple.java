@@ -1,14 +1,13 @@
 package com.unla.OO2.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.unla.OO2.entity.PedidoFinal;
 import com.unla.OO2.repository.PedidoFinalRepository;
 
 public class PedidoFinalServiceImple implements IPedidoFinalService{
-	@Autowired()
+	
+	@Autowired
 	private PedidoFinalRepository pedidoFinalRepository;
 
 	@Override
@@ -30,7 +29,7 @@ public class PedidoFinalServiceImple implements IPedidoFinalService{
 	public List<PedidoFinal> getAll() {
 		return pedidoFinalRepository.findAll();
 	}
-	
+
 	@Override
 	public boolean remove(int id) {
 		try {
@@ -40,4 +39,5 @@ public class PedidoFinalServiceImple implements IPedidoFinalService{
 			return false;
 		}
 	}
+
 }

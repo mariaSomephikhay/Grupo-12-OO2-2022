@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import lombok.Data;
 
 @Entity 
@@ -16,5 +15,4 @@ public class Departamento {
 	private int id;
 	@Column(name="departamento", nullable=false)
 	private String departamento;
-
 }
