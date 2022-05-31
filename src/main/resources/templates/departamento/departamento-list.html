@@ -1,0 +1,17 @@
+<div class="table-responsive table-borderless">
+  <table id="userList" class="table table-bordered table-hover table-striped border-0">
+    <thead class="thead border-0" style="background-color: #A6A0E3;">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="departamento : ${departamentos}">
+        <td th:text="${departamento.id}"></td>
+        <td th:text="${departamento.departamento}"></td>
+      </tr>
+      <button class="btn btn-lg btn-primary btn-block"  ><a href="/departamento/new" style="text-decoration: none; color: inherit;">Crear departamento</a></button>
+    </tbody>
+  </table>
+</div>

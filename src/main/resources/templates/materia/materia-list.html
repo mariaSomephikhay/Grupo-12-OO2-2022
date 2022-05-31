@@ -1,0 +1,21 @@
+<div class="table-responsive table-borderless">
+  <table id="userList" class="table table-bordered table-hover table-striped border-0">
+    <thead class="thead border-0" style="background-color: #A6A0E3;">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Codigo Materia</th>
+        <th scope="col">Materia</th>
+        <th scope="col">Carrera</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="materia : ${materias}">
+        <td th:text="${materia.id}"></td>
+        <td th:text="${materia.codMateria}"></td>
+        <td th:text="${materia.materia}"></td>
+        <td th:text="${materia.carrera.carrera}"></td>
+      </tr>
+      <button class="btn btn-lg btn-primary btn-block"  ><a href="/materia/new" style="text-decoration: none; color: inherit;">Crear materia</a></button>
+    </tbody>
+  </table>
+</div>

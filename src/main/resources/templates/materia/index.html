@@ -54,20 +54,17 @@
         </ul>
       </div>
     </div>
-     <button class="btn btn-lg btn-primary btn-block"  ><a href="/departamento/index" style="text-decoration: none; color: inherit;">Administrar Departamentos</a></button>
-     <button class="btn btn-lg btn-primary btn-block"  ><a href="/carrera/index" style="text-decoration: none; color: inherit;">Administrar Carreras</a></button>
-     <button class="btn btn-lg btn-primary btn-block"  ><a href="/materia/index" style="text-decoration: none; color: inherit;">Administrar Materias</a></button>
-     <button class="btn btn-lg btn-primary btn-block"  ><a href="/profesor/index" style="text-decoration: none; color: inherit;">Administrar Profesores</a></button>
     <div class="container border-0">
       <div  id="myTab" role="tablist border-0">
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show" th:classappend=" ${listTab}" id="list" role="tabpanel" aria-labelledby="list-tab">
             <div class="card border-0">
               <div class="card-header border-0" style="background-color: #A6A0E3;">
-                <h4>Catedras</h4>
+                <h4>Materia</h4>
               </div>
               <div class="card-body">
-                <div th:include="catedra/catedra-list.html" th:remove="tag"></div>
+                <div th:include="materia/materia-list.html" th:remove="tag"></div>
+                <button class="btn btn-lg btn-primary btn-block"  ><a href="/catedra/index" style="text-decoration: none; color: inherit;">Go back</a></button>
               </div>
             </div>
           </div>

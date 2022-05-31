@@ -63,7 +63,7 @@
               <div class="card-body">
                 <input type="text" name="idAula" th:value="${idAula}"  placeholder="ID aula" size="20" class="form-control"  >
                 <input type="text" name="turno" th:value="${turno}"  placeholder="Turno" size="20" class="form-control">
-                <input type="text" name="fecha" th:value="${fecha}"  placeholder="Fecha" size="20" class="form-control">
+                <input type="date" name="fecha" th:value="${fecha}"  placeholder="Fecha" size="20" class="form-control" >
                 <button type="submit" class="btn btn-info"  >Buscar</button>
               </div>
           </div>
@@ -102,7 +102,7 @@
 				          </div>
 				          <button class="btn btn-lg btn-primary btn-block" type="submit" >Crear</button>
 				          <button class="btn btn-lg btn-primary btn-block" type="submit" onclick='this.form.action="/espacio/createEspacioMes";'>Crear para todo el mes</button>
-				          <input type="text" name="fechaFin" placeholder="Fecha de fin" size="20" class="form-control">
+				          <input type="date" name="fechaFin" placeholder="Fecha de fin" size="20" class="form-control">
 				          <button class="btn btn-lg btn-primary btn-block" type="submit" onclick='this.form.action="/espacio/createEspacioCuatrimestre";'>Crear para todo el cuatrimestre</button>
 			          </form>
 		        	</div>
