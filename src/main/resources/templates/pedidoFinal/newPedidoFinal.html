@@ -9,27 +9,47 @@
         <div class="card-body">
    
           <div>Fecha de pedido</div>
-          <span th:text="${final.getFechaCreacion()}" />
+          <span th:text="${notaPedido.getFechaCreacion()}" />
           <div>Turno</div>
-          <span th:text="${final.turno}" />
+          <span th:text="${notaPedido.turno}" />
           <div>Aula</div>
-          <span th:text="${final.aula}" />
+          <span th:text="${notaPedido.aula}" />
           <div>Cantidad de estudiantes</div>
-          <span th:text="${final.cantEstudiantes}" />
+          <span th:text="${notaPedido.cantEstudiantes}" />
           <div>Catedras</div>
-          <span th:text="${final.catedra}" />
+          <span th:text="${notaPedido.catedra}" />
           <div>Observaciones</div>
-          <span th:text="*{final.observaciones}" />
+          <span th:text="*{notaPedido.observaciones}" />
+          
+          <div th:if="${notaPedido instanceof T(com.unla.OO2.entity.Final)}">
           <div>Fecha de examen</div>
-          <span th:text="${final.fechaExamen}" />
-         
-          <form action="#" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${final.id})}" th:object="${pedidoFinal}" method="get" >
+          <span th:text="${notaPedido.fechaExamen}" />
+          </div>
+          
+          <div th:if="${notaPedido instanceof T(com.unla.OO2.entity.Curso)}">
+          <div>Codigo de curso</div>
+          <span th:text="${notaPedido.codCurso}"/>
+          <div>Fecha de inicio (El dia que comienza las clases el curso, no el inicio del cautrimestre)</div>
+          <span th:text="${notaPedido.fechaInicio}"/>
+          <div>Fecha de fin de cuatrimestre</div>
+          <span th:text="${notaPedido.fechaFin}"/>
+          <div>Porcentaje de presencialidad</div>
+          <span th:text="${notaPedido.porcPresencialidad}">
+          </div>
+          
+          <form action="#" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get" >
     		<div>Espacios</div>
             <select th:field="*{espacio}">
-              <option th:each="e:${espacios}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre}"  th:if="${e.fecha} == ${final.fechaExamen} and ${e.turno} == ${final.turno}"/>
+            	<div th:if="${espaciosT!=null}">
+              <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
+            	</div>
+            	<div th:if="${espaciosL!=null}">
+              <option th:each="e:${espaciosL}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA LABORATORIO'"/>
+            	</div>
             </select>
             <button class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
     	</form>
+          
 	</body>
 
 </html>

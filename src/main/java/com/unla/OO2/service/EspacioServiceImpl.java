@@ -45,5 +45,55 @@ public class EspacioServiceImpl implements EspacioService {
 		espacio.setLibre(false);
 		return insertOrUpdate(espacio);
 	}
+
+	@Override
+	public List<Espacio> traerConAulaTradicionalPorTurnoYFechaLibres(char turno, String fecha) {
+		return espacioRepository.traerConAulaTradicionalPorTurnoYFechaLibres(turno, fecha);
+	}
+
+	@Override
+	public List<Espacio> traerConAulaLaboratorioPorTurnoYFechaLibres(char turno, String fecha) {
+		return espacioRepository.traerConAulaLaboratorioPorTurnoYFechaLibres(turno, fecha);
+	}
+
+	@Override
+	public List<Espacio> traerConAulaTradicionalPorTurnoYEntreFechasLibres(char turno, String fechaI, String fechaF) {
+		return espacioRepository.traerConAulaTradicionalPorTurnoYEntreFechasLibres(turno, fechaI, fechaF);
+	}
+
+	@Override
+	public List<int[]> traerSumaYIdAulaTradicionalPorTurnoYEntreFechasUnDiaDeLaSemanaLibres(char turno, String fechaI,
+			String fechaF) {
+		return espacioRepository.traerSumaYIdAulaTradicionalPorTurnoYEntreFechasUnDiaDeLaSemanaLibres(turno, fechaI, fechaF);
+	}
+	
+	
+	@Override
+	public Espacio traerConAulaTradicionalPorTurnoYEntreFechasUnDiaDeLaSemanaLibres( int aulaId, char turno, String fechaI,
+			String fechaF) {
+		return espacioRepository.traerConAulaTradicionalPorTurnoYEntreFechasUnDiaDeLaSemanaLibres(aulaId, turno, fechaI, fechaF);
+	}
+	
+	@Override
+	public List<int[]> traerSumaYIdAulaLaboratorioPorTurnoYEntreFechasUnDiaDeLaSemanaLibres(char turno, String fechaI,
+			String fechaF) {
+		return espacioRepository.traerSumaYIdAulaLaboratorioPorTurnoYEntreFechasUnDiaDeLaSemanaLibres(turno, fechaI, fechaF);
+	}
+
+	@Override
+	public Espacio traerConAulaLaboratorioPorTurnoYEntreFechasUnDiaDeLaSemanaLibres(int aulaId, char turno, String fechaI,
+			String fechaF) {
+		return espacioRepository.traerConAulaLaboratorioPorTurnoYEntreFechasUnDiaDeLaSemanaLibres(aulaId, turno, fechaI, fechaF);
+	}
+
+	@Override
+	public Espacio traerPorAulaFechaTurnoLibre(int idAula, char turno, String fecha) {
+		return espacioRepository.traerPorAulaFechaTurnoLibre(idAula, turno, fecha);
+	}
+
+	
+
+	
+	
 	
 }

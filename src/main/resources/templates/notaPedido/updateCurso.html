@@ -99,6 +99,9 @@
       <form th:if="${curso.asignado==false}" action="#" class="btn btn-lg btn-primary btn-block" th:action="@{/notaPedido/deleteCurso/{id}(id=${curso.id})}" method="post" >
       <button class="btn btn-lg btn-primary btn-block" type="submit" >Eliminar</button>
       </form>
+      <form th:if="${curso.asignado==false}" action="#" class="btn btn-lg btn-primary btn-block" th:action="@{/pedidoFinal/newPedidoFinal/{id}(id=${curso.id})}" method="get">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Asignar un espacio al pedido</button>
+      </form>
       </div>
     </div>
   </body>
