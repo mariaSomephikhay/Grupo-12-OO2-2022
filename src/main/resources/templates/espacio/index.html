@@ -61,9 +61,10 @@
           <div class="tab-content" id="myTabContent">
             <form th:action="@{/espacio/index}" method="get" class="form-control-sm form-inline">
               <div class="card-body">
-                <input type="text" name="idAula" th:value="${idAula}"  placeholder="ID aula" size="20" class="form-control"  >
--               <input type="text" name="turno" th:value="${turno}"  placeholder="Turno" size="20" class="form-control">
--               <input type="date" name="fecha" th:value="${fecha}"  placeholder="Fecha" size="20" class="form-control" >
+                <p class="form-signin-heading">Para crear un espacio primero debe verificar su disponibilidad.</p>
+                <input type="number" name="idAula" th:value="${idAula}"  placeholder="Número de aula" size="20" class="form-control" required >
+                <input type="text" maxlength="1" name="turno" th:value="${turno}"  placeholder="Turno" size="20" class="form-control" required>
+                <input type="date" name="fecha" th:value="${fecha}"  placeholder="Fecha" size="20" class="form-control" required>
                 <button type="submit" class="btn btn-info"  >Buscar</button>
               </div>
           </div>
@@ -80,7 +81,7 @@
           <tbody>
 	          <tr th:each="espacio : ${lstEspacio}" th:field="${espacio}">
 	          <td th:text="${espacio.fecha}"></td>
-	          <td th:text="${espacio.libre}"></td>
+	          <td th:text="${espacio.libre}?'Sí':'No'"></td>
 	          <td th:text="${espacio.turno}"></td>
 	          <td th:text="${espacio.aula.id}"></td>
 	          <td th:text="${espacio.aula.numero}"></td>
@@ -90,15 +91,16 @@
 	          <div class="tab-pane fade show border-0" id="showEspacio">
 		          <div class="wrapper">
 			          <form action="#" th:action="@{/espacio/createEspacio}" th:object="${espacio}" method="post" >
-				          <h2 class="form-signin-heading">El espacio está disponible</h2>
+				          <h2 class="form-signin-heading">El espacio está disponible para su creación</h2>
 				          <div class="card-body">
 					          <input type="date" class="form-control search" th:field="*{fecha}" readonly />
 					          <input type="boolean" class="form-control" th:field="*{libre}" value="true" readonly />
 					          <input type="text" class="form-control" th:field="*{turno}" readonly/>
-					          <div>Aula</div>
+					          <div>Aula</div>					         
 					          <select readonly th:field="*{aula}" >
-					                 <option th:each="a:${aulas}" th:value="${(a.id)}" th:text="${a.numero}"  th:if="${a.id} == ${idAula}"> />
+					    	  <option th:each="a:${aulas}" th:value="${(a.id)}" th:text="${idAula}" th:if="${a.numero} == ${idAula}">
 					          </select>
+					           <p>Si el aula indicada no existe, el espacio no se creará.</p>
 				          </div>
 				          <button class="btn btn-lg btn-primary btn-block" type="submit" >Crear</button>
 				          <button class="btn btn-lg btn-primary btn-block" type="submit" onclick='this.form.action="/espacio/createEspacioMes";'>Crear para todo el mes</button>

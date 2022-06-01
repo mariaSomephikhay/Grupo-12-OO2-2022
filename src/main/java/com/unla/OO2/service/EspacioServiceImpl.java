@@ -17,11 +17,6 @@ public class EspacioServiceImpl implements EspacioService {
 	}
 
 	@Override
-	public List<Espacio> traer(String numeroAula, String turno, String fecha){
-		return espacioRepository.traer(numeroAula, turno, fecha);
-	}
-
-	@Override
 	public List<Espacio> listAll(String idAula, String turno, String fecha){
 		if(idAula != null && turno !=null && fecha!=null) {
 			return espacioRepository.traer(idAula, turno, fecha);

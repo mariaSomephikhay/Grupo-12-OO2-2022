@@ -8,7 +8,6 @@ import com.unla.OO2.entity.Espacio;
 
 public interface EspacioService {
 	public List<Espacio> getAll();
-	public List<Espacio> traer(String idAula, String turno, String fecha);
 	public List<Espacio> traerConAulaTradicionalPorTurnoYFechaLibres(char turno, String fecha);
 	public List<Espacio> traerConAulaLaboratorioPorTurnoYFechaLibres(char turno, String fecha);
 	public List<Espacio> traerConAulaTradicionalPorTurnoYEntreFechasLibres(char turno, String fechaI, String fechaF);
