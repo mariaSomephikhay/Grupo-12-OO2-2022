@@ -73,7 +73,7 @@
             <input type="text" class="form-control" th:field="*{cantEstudiantes}"/>
             <div>Catedras</div>
             <select th:field="*{catedra}">
-              <option th:each="c:${catedras}" th:value="${(c.id)}" th:text="${c.materia.materia}"/>
+              <option th:each="c:${catedras}" th:value="${(c.id)}" th:text="${c.materia.nombreMateria}"/>
             </select>
             <div>Observaciones</div>
             <input type="text" class="form-control" th:field="*{observaciones}"/>
