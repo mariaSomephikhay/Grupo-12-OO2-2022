@@ -42,4 +42,10 @@ public class NotaPedidoServiceImpl implements INotaPedidoService{
 		}
 	}
 
+	@Override
+	public boolean cambiarAsignado(NotaPedido notaPedido) {
+		notaPedido.setAsignado(true);
+		return insertOrUpdate(notaPedido);
+	}
+
 }

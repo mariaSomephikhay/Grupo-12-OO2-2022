@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	</head>
+	
+	<body>
+		<!--<form action="#" th:action="@{/pedidoFinal/createPedidoFinal}" th:object="${pedidoFinal}" method="post" >-->
+        <h2 class="form-signin-heading">Nota pedido</h2>
+        <div class="card-body">
+   
+          <div>Fecha de pedido</div>
+          <span th:text="${final.getFechaCreacion()}" />
+          <div>Turno</div>
+          <span th:text="${final.turno}" />
+          <div>Aula</div>
+          <span th:text="${final.aula}" />
+          <div>Cantidad de estudiantes</div>
+          <span th:text="${final.cantEstudiantes}" />
+          <div>Catedras</div>
+          <span th:text="${final.catedra}" />
+          <div>Observaciones</div>
+          <span th:text="*{final.observaciones}" />
+          <div>Fecha de examen</div>
+          <span th:text="${final.fechaExamen}" />
+         
+          <form action="#" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${final.id})}" th:object="${pedidoFinal}" method="get" >
+    		<div>Espacios</div>
+            <select th:field="*{espacio}">
+              <option th:each="e:${espacios}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre}"  th:if="${e.fecha} == ${final.fechaExamen} and ${e.turno} == ${final.turno}"/>
+            </select>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
+    	</form>
+	</body>
+
+</html>

@@ -2,9 +2,12 @@ package com.unla.OO2.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.unla.OO2.entity.PedidoFinal;
 import com.unla.OO2.repository.PedidoFinalRepository;
 
+@Service("pedidoFinalService")
 public class PedidoFinalServiceImple implements IPedidoFinalService{
 	
 	@Autowired

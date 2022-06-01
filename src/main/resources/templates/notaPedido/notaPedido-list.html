@@ -18,6 +18,7 @@
     <tbody>
       <tr th:each="nota : ${notas}">
         <td><span th:text="${nota.fechaCreacion}" /></td>
+        <span th:text="${fechaCreacion}" />
         <td th:if="${nota instanceof T(com.unla.OO2.entity.Final)}">
           <span>Mesa de Final</span>
         </td>

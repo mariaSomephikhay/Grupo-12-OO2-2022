@@ -8,4 +8,5 @@ public interface EspacioService {
 	public List<Espacio> traer(String idAula, String turno, String fecha);
 	public List<Espacio> listAll(String idAula, String turno, String fecha);
 	public boolean insertOrUpdate(Espacio espacio);
+	public boolean cambiarLibre(Espacio espacio);
 }

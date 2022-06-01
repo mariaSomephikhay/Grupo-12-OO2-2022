@@ -39,5 +39,11 @@ public class EspacioServiceImpl implements EspacioService {
 			return false;
 		}
 	}
+
+	@Override
+	public boolean cambiarLibre(Espacio espacio) {
+		espacio.setLibre(false);
+		return insertOrUpdate(espacio);
+	}
 	
 }

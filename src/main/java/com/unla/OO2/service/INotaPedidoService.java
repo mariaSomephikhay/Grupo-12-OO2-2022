@@ -8,4 +8,5 @@ public interface INotaPedidoService{
 	public boolean insertOrUpdate(NotaPedido notaPedido);
 	public NotaPedido findById(int id);
 	public boolean remove(int id);
+	public boolean cambiarAsignado(NotaPedido notaPedido);
 }
