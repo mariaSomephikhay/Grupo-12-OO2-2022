@@ -2,6 +2,8 @@ package com.unla.OO2.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,9 +48,9 @@ public class CarreraController {
 	}
 	
 	@PostMapping("/create")
-	public String create(@ModelAttribute("carrera") Carrera carrera) {
+	public String create(@Valid @ModelAttribute("carrera") Carrera carrera) {
 		carreraService.insertOrUpdate(carrera);
-		return "redirect:/index";
+		return "redirect:index";
 	}
 
 	@GetMapping("/{id}")

@@ -10,7 +10,7 @@
     <tbody>
       <tr th:each="carrera : ${carreras}">
         <td th:text="${carrera.id}"></td>
-        <td th:text="${carrera.carrera}"></td>
+        <td th:text="${carrera.nombreCarrera}"></td>
         <td th:text="${carrera.departamento.departamento}"></td>
       </tr>
       <button class="btn btn-lg btn-primary btn-block"  ><a href="/carrera/new" style="text-decoration: none; color: inherit;">Crear carrera</a></button>

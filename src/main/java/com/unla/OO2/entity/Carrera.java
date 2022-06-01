@@ -16,8 +16,8 @@ public class Carrera {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name="carrera", nullable=false)
-	private String carrera;
+	@Column(name="nombreCarrera", nullable=false)
+	private String nombreCarrera;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="departamento_id", nullable=false)
 	private Departamento departamento;

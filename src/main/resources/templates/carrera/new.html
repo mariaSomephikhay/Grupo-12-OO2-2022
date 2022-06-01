@@ -60,7 +60,7 @@
           <h2 class="form-signin-heading">Nueva carrera</h2>
           <div class="card-body">
             <div>Carrera</div>
-            <input input type="text" th:field="*{carrera}" placeholder="Nombre" class="form-control"  />
+            <input type="text" th:field="*{nombreCarrera}" placeholder="Nombre" class="form-control"/>
             <div>Departamento</div>
             <select th:field="*{departamento}">
               <option th:each="d:${departamentos}" th:value="${(d.id)}" th:text="${d.departamento}"/>
