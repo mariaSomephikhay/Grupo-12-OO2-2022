@@ -43,7 +43,7 @@
       <div class="dropdown-menu border-0" aria-labelledby="dropdownMenuButton">
         <ul class="nav nav-tabs border-0">
           <li class="nav-item border-0 dropdown-item">
-            <a class="nav-link border-0" th:href="@{/aula/index}">Gestor</a>
+            <a class="nav-link border-0" th:href="@{/materia/index}">Gestor</a>
           </li>
           <li class="nav-item border-0 dropdown-item">
             <a class="nav-link border-0" th:href="@{../menu/index}">Menú principal</a>
@@ -63,7 +63,7 @@
             <div>Codigo materia</div>
             <input input type="text"class="form-control"  placeholder="Codigo" th:field="*{codMateria}"  />
             <div>Materia:</div>
-            <input type="text" class="form-control" th:field="*{materia}" placeholder="Nombre de la materia" />
+            <input type="text" class="form-control" th:field="*{nombreMateria}" placeholder="Nombre de la materia" />
             <div>Carrera</div>
             <select th:field="*{carrera}">
               <option th:each="c:${carreras}" th:value="${(c.id)}" th:text="${c.carrera.carrera}"/>

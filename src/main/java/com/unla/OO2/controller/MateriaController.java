@@ -48,7 +48,7 @@ public class MateriaController {
 	@PostMapping("/create")
 	public String create(@ModelAttribute("materia") Materia materia) {
 		materiaService.insertOrUpdate(materia);
-		return "redirect:/index";
+		return "redirect:index";
 	}
 
 	@GetMapping("/{id}")

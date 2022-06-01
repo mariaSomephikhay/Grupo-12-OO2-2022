@@ -4,12 +4,18 @@
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Nombre</th>
+        <th scope="col">Vista</th>
       </tr>
     </thead>
     <tbody>
       <tr th:each="departamento : ${departamentos}">
         <td th:text="${departamento.id}"></td>
         <td th:text="${departamento.departamento}"></td>
+        <td>
+          <span>
+          <a th:href="@{/departamento/{id}(id=${departamento.id})}" style="color:#FFFFFF" ;>Modificar / Eliminar</a>
+          </span>
+        </td>
       </tr>
       <button class="btn btn-lg btn-primary btn-block"  ><a href="/departamento/new" style="text-decoration: none; color: inherit;">Crear departamento</a></button>
     </tbody>

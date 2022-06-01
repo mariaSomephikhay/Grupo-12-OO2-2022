@@ -18,8 +18,8 @@ public class Materia {
 	private int id;
 	@Column(name="codMateria")
 	private int codMateria;
-	@Column(name="materia", nullable=false)
-	private String materia;
+	@Column(name="nombreMateria", nullable=false)
+	private String nombreMateria;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="carrera_id", nullable=false)
 	private Carrera carrera;

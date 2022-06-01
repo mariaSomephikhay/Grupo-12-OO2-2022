@@ -7,16 +7,23 @@
         <th scope="col">Carrera</th>
         <th scope="col">Departamento</th>
         <th scope="col">Profesores</th>
+        <th scope="col">Vista</th>
       </tr>
     </thead>
     <tbody>
-      <tr th:each="catedra : ${catedras}">
+     <tr th:each="catedra : ${catedras}">
         <td th:text="${catedra.id}"></td>
-        <td th:text="${catedra.materia.materia}"></td>
-        <td th:text="${catedra.materia.carrera.carrera}"></td>
+        <td th:text="${catedra.materia.nombreMateria}"></td>
+        <td th:text="${catedra.materia.carrera.nombreCarrera}"></td>
         <td th:text="${catedra.materia.carrera.departamento.departamento}"></td>
         <td th:text="${catedra.profesores}"></td>
+        <td>
+          <span>
+          <a th:href="@{/catedra/{id}(id=${catedra.id})}" style="color:#FFFFFF" ;>Modificar / Eliminar</a>
+          </span>
+        </td>
       </tr>
+     <button class="btn btn-lg btn-primary btn-block"  ><a href="/catedra/new" style="text-decoration: none; color: inherit;">Crear catedra</a></button>
     </tbody>
   </table>
 </div>

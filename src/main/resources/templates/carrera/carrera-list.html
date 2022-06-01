@@ -5,6 +5,7 @@
         <th scope="col">Id</th>
         <th scope="col">Carrera</th>
         <th scope="col">Departamento</th>
+        <th scope="col">Vista</th>
       </tr>
     </thead>
     <tbody>
@@ -12,6 +13,11 @@
         <td th:text="${carrera.id}"></td>
         <td th:text="${carrera.nombreCarrera}"></td>
         <td th:text="${carrera.departamento.departamento}"></td>
+        <td>
+          <span>
+          <a th:href="@{/carrera/{id}(id=${carrera.id})}" style="color:#FFFFFF" ;>Modificar / Eliminar</a>
+          </span>
+        </td>
       </tr>
       <button class="btn btn-lg btn-primary btn-block"  ><a href="/carrera/new" style="text-decoration: none; color: inherit;">Crear carrera</a></button>
     </tbody>

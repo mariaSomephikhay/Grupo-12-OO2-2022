@@ -6,14 +6,20 @@
         <th scope="col">Codigo Materia</th>
         <th scope="col">Materia</th>
         <th scope="col">Carrera</th>
+        <th scope="col">Vista</th>
       </tr>
     </thead>
     <tbody>
       <tr th:each="materia : ${materias}">
         <td th:text="${materia.id}"></td>
         <td th:text="${materia.codMateria}"></td>
-        <td th:text="${materia.materia}"></td>
-        <td th:text="${materia.carrera.carrera}"></td>
+        <td th:text="${materia.nombreMateria}"></td>
+        <td th:text="${materia.carrera.nombreCarrera}"></td>
+        <td>
+          <span>
+          <a th:href="@{/materia/{id}(id=${materia.id})}" style="color:#FFFFFF" ;>Modificar / Eliminar</a>
+          </span>
+        </td>
       </tr>
       <button class="btn btn-lg btn-primary btn-block"  ><a href="/materia/new" style="text-decoration: none; color: inherit;">Crear materia</a></button>
     </tbody>
