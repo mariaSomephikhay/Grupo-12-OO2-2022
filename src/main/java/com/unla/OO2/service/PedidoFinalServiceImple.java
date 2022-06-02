@@ -43,4 +43,9 @@ public class PedidoFinalServiceImple implements IPedidoFinalService{
 		}
 	}
 
+	@Override
+	public int traerCantidadDeEspacioAsginado(int idNotaPedido) {
+		return pedidoFinalRepository.traerCantidadDeEspacioAsginado(idNotaPedido);
+	}
+
 }

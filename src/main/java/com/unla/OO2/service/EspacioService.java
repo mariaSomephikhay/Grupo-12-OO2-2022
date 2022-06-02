@@ -19,4 +19,5 @@ public interface EspacioService {
 	public List<Espacio> listAll(String idAula, String turno, String fecha);
 	public boolean insertOrUpdate(Espacio espacio);
 	public boolean cambiarLibre(Espacio espacio);
+	public Espacio findById (int id);
 }

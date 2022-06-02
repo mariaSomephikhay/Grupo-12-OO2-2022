@@ -8,4 +8,5 @@ public interface IPedidoFinalService {
 	public boolean insertOrUpdate(PedidoFinal pedidoFinal);
 	public PedidoFinal findById(int id);
 	public boolean remove(int id);
+	public int traerCantidadDeEspacioAsginado(int idNotaPedido);
 }

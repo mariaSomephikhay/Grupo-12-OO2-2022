@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.unla.OO2.entity.Final;
@@ -98,7 +97,12 @@ public class PedidoFinalController {
 				}
 				
 			}
-			System.out.println(espacioL.size());
+			
+			if (c.getPorcPresencialidad()==25) {
+				espacioT = espacioService.traerConAulaTradicionalPorTurnoYEntreFechasLibres(np.getTurno(), fechaI.toString(), fechaF.toString());
+				espacioL = espacioService.traerConAulaTradicionalPorTurnoYEntreFechasLibres(np.getTurno(), fechaI.toString(), fechaF.toString());
+			}
+			//System.out.println(espacioL.size());
 			if (espacioT.size()!=0) {
 				model.addAttribute("espaciosT", espacioT);
 			}else {
@@ -117,6 +121,8 @@ public class PedidoFinalController {
 	@GetMapping("/createPedidoFinal/{id}")
 	public String createFinal(@Valid @ModelAttribute("pedidoFinal") PedidoFinal pedidoFinal, @PathVariable("id") int id) {
 		NotaPedido np = notaPedidoService.findById(id);
+		System.out.println("ESPACIO "+pedidoFinal.getEspacio().getId());
+		
 		if (np instanceof Final) {
 			pedidoFinal.setNotaPedido(np);
 			pedidoFinalService.insertOrUpdate(pedidoFinal);
@@ -138,7 +144,7 @@ public class PedidoFinalController {
 					 fechaAux = fechaAux.plusDays(7);
 				}
 				notaPedidoService.cambiarAsignado(np);
-			}
+			} 
 			if (c.getPorcPresencialidad()==50) {
 				LocalDate fechaAux = c.getFechaInicio();
 				while (fechaAux.isBefore(c.getFechaFin().plusDays(1))) {
@@ -155,6 +161,21 @@ public class PedidoFinalController {
 					 }
 				}
 				notaPedidoService.cambiarAsignado(np);
+			}
+			
+			if(c.getPorcPresencialidad()==25) {
+				 PedidoFinal pedidoGuardar = new PedidoFinal();
+				 pedidoGuardar.setEspacio(pedidoFinal.getEspacio());
+				 pedidoGuardar.setNotaPedido(np);
+				 pedidoFinalService.insertOrUpdate(pedidoGuardar);
+				 System.out.println("HOLA "+pedidoGuardar.getIdPedidoFinal());
+				 System.out.println("HOLA "+np.getId());
+				 espacioService.cambiarLibre(pedidoGuardar.getEspacio());
+				 System.out.println("CANTIDAD  "+pedidoFinalService.traerCantidadDeEspacioAsginado(np.getId()));
+				 if(pedidoFinalService.traerCantidadDeEspacioAsginado(np.getId()) >= 2) {
+					notaPedidoService.cambiarAsignado(np); 
+				 }
+				 
 			}
 		}
 		

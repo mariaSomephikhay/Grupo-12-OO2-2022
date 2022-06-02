@@ -86,6 +86,13 @@ public class EspacioServiceImpl implements EspacioService {
 		return espacioRepository.traerPorAulaFechaTurnoLibre(idAula, turno, fecha);
 	}
 
+	@Override
+	public Espacio findById(int id) {
+		return espacioRepository.findById(id).orElse(null);
+	}
+
+	
+
 	
 
 	
