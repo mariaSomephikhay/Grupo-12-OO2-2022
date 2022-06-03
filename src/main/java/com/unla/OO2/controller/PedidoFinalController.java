@@ -3,9 +3,7 @@ package com.unla.OO2.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.unla.OO2.entity.Final;
 import com.unla.OO2.entity.Aula;
 import com.unla.OO2.entity.Curso;
@@ -23,8 +20,6 @@ import com.unla.OO2.entity.PedidoFinal;
 import com.unla.OO2.service.EspacioService;
 import com.unla.OO2.service.INotaPedidoService;
 import com.unla.OO2.service.IPedidoFinalService;
-
-
 
 @Controller
 @RequestMapping("/pedidoFinal")
@@ -61,7 +56,6 @@ public class PedidoFinalController {
 				semanas++;
 			}
 			if (c.getPorcPresencialidad()==100) {
-				
 				List<int[]> lista = espacioService.traerSumaYIdAulaTradicionalPorTurnoYEntreFechasUnDiaDeLaSemanaLibres(np.getTurno(), fechaI.toString(), fechaF.toString());
 				for (int i=0; i<lista.size(); i++) {
 					if (lista.get(i)[0]==semanas) {
@@ -77,19 +71,14 @@ public class PedidoFinalController {
 				}
 			}
 			if (c.getPorcPresencialidad()==50) {
-				semanas = semanas/2;
-				
+				semanas = semanas/2;	
 				List<int[]> lista = espacioService.traerSumaYIdAulaTradicionalPorTurnoYEntreFechasUnDiaDeLaSemanaLibres(np.getTurno(), fechaI.toString(), fechaF.toString());
-				System.out.println(lista.size());
 				for (int i=0; i<lista.size(); i++) {
 					if (lista.get(i)[0]>=semanas) {
 						espacioT.add(espacioService.traerConAulaTradicionalPorTurnoYEntreFechasUnDiaDeLaSemanaLibres(lista.get(i)[1], np.getTurno(), fechaI.toString(), fechaF.toString()));
 					}
-				}
-				System.out.println(espacioT.size());
-				
+				}				
 				List<int[]> lista2 = espacioService.traerSumaYIdAulaLaboratorioPorTurnoYEntreFechasUnDiaDeLaSemanaLibres(np.getTurno(), fechaI.toString(), fechaF.toString());
-				System.out.println(lista2.size());
 				for (int i=0; i<lista2.size(); i++) {
 					if (lista2.get(i)[0]>=semanas) {
 						espacioL.add(espacioService.traerConAulaLaboratorioPorTurnoYEntreFechasUnDiaDeLaSemanaLibres(lista2.get(i)[1], np.getTurno(), fechaI.toString(), fechaF.toString()));
@@ -102,7 +91,6 @@ public class PedidoFinalController {
 				espacioT = espacioService.traerConAulaTradicionalPorTurnoYEntreFechasLibres(np.getTurno(), fechaI.toString(), fechaF.toString());
 				espacioL = espacioService.traerConAulaTradicionalPorTurnoYEntreFechasLibres(np.getTurno(), fechaI.toString(), fechaF.toString());
 			}
-			//System.out.println(espacioL.size());
 			if (espacioT.size()!=0) {
 				model.addAttribute("espaciosT", espacioT);
 			}else {
@@ -112,8 +100,7 @@ public class PedidoFinalController {
 				model.addAttribute("espaciosL", espacioL);
 			}else {
 				model.addAttribute("espaciosL", null);
-			}
-				
+			}	
 		}
 		return "pedidoFinal/newPedidoFinal";
 	}
@@ -121,7 +108,6 @@ public class PedidoFinalController {
 	@GetMapping("/createPedidoFinal/{id}")
 	public String createFinal(@Valid @ModelAttribute("pedidoFinal") PedidoFinal pedidoFinal, @PathVariable("id") int id) {
 		NotaPedido np = notaPedidoService.findById(id);
-		System.out.println("ESPACIO "+pedidoFinal.getEspacio().getId());
 		
 		if (np instanceof Final) {
 			pedidoFinal.setNotaPedido(np);
@@ -168,19 +154,13 @@ public class PedidoFinalController {
 				 pedidoGuardar.setEspacio(pedidoFinal.getEspacio());
 				 pedidoGuardar.setNotaPedido(np);
 				 pedidoFinalService.insertOrUpdate(pedidoGuardar);
-				 System.out.println("HOLA "+pedidoGuardar.getIdPedidoFinal());
-				 System.out.println("HOLA "+np.getId());
 				 espacioService.cambiarLibre(pedidoGuardar.getEspacio());
-				 System.out.println("CANTIDAD  "+pedidoFinalService.traerCantidadDeEspacioAsginado(np.getId()));
 				 if(pedidoFinalService.traerCantidadDeEspacioAsginado(np.getId()) >= 2) {
 					notaPedidoService.cambiarAsignado(np); 
-				 }
-				 
+				 }	 
 			}
 		}
-		
 		return "redirect:/notaPedido/index";
 	}
-	
 	
 }

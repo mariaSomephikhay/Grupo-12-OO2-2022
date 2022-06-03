@@ -1,78 +1,116 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-	</head>
-	
-	<body>
-		<!--<form action="#" th:action="@{/pedidoFinal/createPedidoFinal}" th:object="${pedidoFinal}" method="post" >-->
-        <h2 class="form-signin-heading">Nota pedido</h2>
+  <head>
+    <title>Spring</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/user-form.css" th:href="@{/css/user-form.css}">
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <style>
+      html,
+      body {
+      height: 100%;
+      }
+      body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      }
+      .dropdown {
+      z-index: 999;
+      }
+      .dropdown-menu {
+      background-color: #7A6ECE;
+      }
+      .dropdown-item:hover {
+      background-color: #C6C4F4;
+      }
+    </style>
+  <body>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+      </button>
+      <div class="dropdown-menu border-0" aria-labelledby="dropdownMenuButton">
+        <ul class="nav nav-tabs border-0">
+          <li class="nav-item border-0 dropdown-item">
+            <a class="nav-link border-0" th:href="@{/aula/index}">Gestor</a>
+          </li>
+          <li class="nav-item border-0 dropdown-item">
+            <a class="nav-link border-0" th:href="@{../menu/index}">Menú principal</a>
+          </li>
+          <li class="nav-item border-0 dropdown-item">
+            <a class="nav-link border-0" href="#" th:href="@{/logout}">Salir</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <body>
+      <h2 class="form-signin-heading">Nota pedido</h2>
+      <div class="d-flex align-items-center justify-content-center">
+      <div class="card-body row justify-content-center align-items-center">
+        <!--<form action="#" th:action="@{/pedidoFinal/createPedidoFinal}" th:object="${pedidoFinal}" method="post" >-->
         <div class="card-body">
-   
           <div>Fecha de pedido</div>
-          <span th:text="${notaPedido.getFechaCreacion()}" />
+          <input th:value="${notaPedido.getFechaCreacion()}" class="form-control" readonly/>
           <div>Turno</div>
-          <span th:text="${notaPedido.turno}" />
+          <input th:value="${notaPedido.turno}" class="form-control" readonly/>
           <div>Aula</div>
-          <span th:text="${notaPedido.aula}" />
+          <input th:value="${notaPedido.aula}" class="form-control" readonly/>
           <div>Cantidad de estudiantes</div>
-          <span th:text="${notaPedido.cantEstudiantes}" />
+          <input th:value="${notaPedido.cantEstudiantes}" class="form-control" readonly/>
           <div>Catedras</div>
-          <span th:text="${notaPedido.catedra}" />
+          <input th:value="${notaPedido.catedra.materia.nombreMateria}" class="form-control" readonly/>
           <div>Observaciones</div>
-          <span th:text="*{notaPedido.observaciones}" />
-          
+          <input th:value="*{notaPedido.observaciones}" class="form-control" readonly/>
           <div th:if="${notaPedido instanceof T(com.unla.OO2.entity.Final)}">
-          <div>Fecha de examen</div>
-          <span th:text="${notaPedido.fechaExamen}" />
+            <div>Fecha de examen</div>
+            <input th:value="${notaPedido.fechaExamen}" class="form-control" readonly/>
           </div>
-          
           <div th:if="${notaPedido instanceof T(com.unla.OO2.entity.Curso)}">
-          <div>Codigo de curso</div>
-          <span th:text="${notaPedido.codCurso}"/>
-          <div>Fecha de inicio (El dia que comienza las clases el curso, no el inicio del cautrimestre)</div>
-          <span th:text="${notaPedido.fechaInicio}"/>
-          <div>Fecha de fin de cuatrimestre</div>
-          <span th:text="${notaPedido.fechaFin}"/>
-          <div>Porcentaje de presencialidad</div>
-          <span th:text="${notaPedido.porcPresencialidad}">
+            <div>Codigo de curso</div>
+            <input th:value="${notaPedido.codCurso}" class="form-control" readonly/>
+            <div>Fecha de inicio (El día que comienza las clases el curso, no el inicio del cuatrimestre)</div>
+            <input th:value="${notaPedido.fechaInicio}" class="form-control" readonly/>
+            <div>Fecha de fin de cuatrimestre</div>
+            <input th:value="${notaPedido.fechaFin}" class="form-control" readonly/>
+            <div>Porcentaje de presencialidad</div>
+            <input th:value="${notaPedido.porcPresencialidad}" class="form-control" readonly/>
           </div>
-          
-          <div>Id nota pedido</div>
-          <span th:text="*{notaPedido.id}" />
-          
-        	<form th:if="${notaPedido.porcPresencialidad>25}" action="#" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get" >
-    		<div>Espacios</div>
-            <select th:field="*{espacio}">
-            	<div th:if="${espaciosT!=null}">
-              <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
-            	</div>
-            	<div th:if="${espaciosL!=null}">
+          <form th:if="${notaPedido.porcPresencialidad>25}" action="#" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get" >
+            <div>Espacios</div>
+            <select th:field="*{espacio}" class="form-control form-select-lg mb-3">
+              <div th:if="${espaciosT!=null}">
+                <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
+              </div>
+              <div th:if="${espaciosL!=null}">
               <option th:each="e:${espaciosL}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA LABORATORIO'"/>
-            	</div>
+              </div>
             </select>
             <button class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
-            </form>
-            
-            <form th:if="${notaPedido.porcPresencialidad==25}" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get">
-	    	
-	
-				<div>Espacios</div>
-            	<select th:field="*{espacio}">
-            	<div th:if="${espaciosT!=null}">
-              	<option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
-            	</div>
-            	<div th:if="${espaciosL!=null}">
-              	<option th:each="e:${espaciosL}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA LABORATORIO'"/>
-            	</div>
-            	</select>
-		
-					</tbody>
-					</table>
-					
-					<button class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
-            
-    		</form>
-          
-	</body>
-
+          </form>
+          <form th:if="${notaPedido.porcPresencialidad==25}" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get">
+            <div>Espacios</div>
+            <select th:field="*{espacio}" class="form-control form-select-lg mb-3">
+              <div th:if="${espaciosT!=null}">
+                <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
+              </div>
+              <div th:if="${espaciosL!=null}">
+              <option th:each="e:${espaciosL}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA LABORATORIO'"/>
+              </div>
+            </select>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
+          </form>
+        </div>
+      </div>
+  </body>
 </html>
