@@ -75,6 +75,19 @@
           <div th:if="${notaPedido instanceof T(com.unla.OO2.entity.Final)}">
             <div>Fecha de examen</div>
             <input th:value="${notaPedido.fechaExamen}" class="form-control" readonly/>
+            
+            <form action="#" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get" >
+            <div>Espacios</div>
+            <select th:field="*{espacio}" class="form-control form-select-lg mb-3">
+              <div th:if="${espaciosT!=null}">
+                <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Fecha:' + ${e.fecha} + ' Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
+              </div>
+              <div th:if="${espaciosL!=null}">
+              <option th:each="e:${espaciosL}" th:value="${(e.id)}" th:text="'Fecha:' + ${e.fecha} + ' Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA LABORATORIO'"/>
+              </div>
+            </select>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
+          </form>
           </div>
           <div th:if="${notaPedido instanceof T(com.unla.OO2.entity.Curso)}">
             <div>Codigo de curso</div>
@@ -85,31 +98,32 @@
             <input th:value="${notaPedido.fechaFin}" class="form-control" readonly/>
             <div>Porcentaje de presencialidad</div>
             <input th:value="${notaPedido.porcPresencialidad}" class="form-control" readonly/>
+          
+	          <form th:if="${notaPedido.porcPresencialidad>25}" action="#" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get" >
+	            <div>Espacios</div>
+	            <select th:field="*{espacio}" class="form-control form-select-lg mb-3">
+	              <div th:if="${espaciosT!=null}">
+	                <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
+	              </div>
+	              <div th:if="${espaciosL!=null}">
+	              <option th:each="e:${espaciosL}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA LABORATORIO'"/>
+	              </div>
+	            </select>
+	            <button class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
+	          </form>
+	          <form th:if="${notaPedido.porcPresencialidad==25}" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get">
+	            <div>Espacios</div>
+	            <select th:field="*{espacio}" class="form-control form-select-lg mb-3">
+	              <div th:if="${espaciosT!=null}">
+	                <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Fecha:' + ${e.fecha} + ' Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
+	              </div>
+	              <div th:if="${espaciosL!=null}">
+	              <option th:each="e:${espaciosL}" th:value="${(e.id)}" th:text="'Fecha:' + ${e.fecha} + ' Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA LABORATORIO'"/>
+	              </div>
+	            </select>
+	            <button class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
+	          </form>
           </div>
-          <form th:if="${notaPedido.porcPresencialidad>25}" action="#" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get" >
-            <div>Espacios</div>
-            <select th:field="*{espacio}" class="form-control form-select-lg mb-3">
-              <div th:if="${espaciosT!=null}">
-                <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
-              </div>
-              <div th:if="${espaciosL!=null}">
-              <option th:each="e:${espaciosL}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA LABORATORIO'"/>
-              </div>
-            </select>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
-          </form>
-          <form th:if="${notaPedido.porcPresencialidad==25}" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get">
-            <div>Espacios</div>
-            <select th:field="*{espacio}" class="form-control form-select-lg mb-3">
-              <div th:if="${espaciosT!=null}">
-                <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
-              </div>
-              <div th:if="${espaciosL!=null}">
-              <option th:each="e:${espaciosL}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA LABORATORIO'"/>
-              </div>
-            </select>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
-          </form>
         </div>
       </div>
   </body>
