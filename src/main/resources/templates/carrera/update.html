@@ -64,7 +64,7 @@
             <input type="text" class="form-control" th:field="*{nombreCarrera}" placeholder="Nombre de la Carrera" />
             <div>Departamento</div>
             <select th:field="*{departamento}">
-              <option th:each="d:${departamentos}" th:value="${(d.id)}" th:text="${d.departamento}"/>
+              <option th:each="d:${departamentos}" th:value="${(d.id)}" th:text="${d.departamento}">
             </select>
             <button class="btn btn-lg btn-primary btn-block" type="submit" >Editar</button>
           </div>

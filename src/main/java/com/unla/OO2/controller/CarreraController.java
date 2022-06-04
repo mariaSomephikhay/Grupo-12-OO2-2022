@@ -56,6 +56,7 @@ public class CarreraController {
 	@GetMapping("/{id}")
 	public String get(Model model, @PathVariable("id") int id) {
 		model.addAttribute("carrera", carreraService.findById(id));
+		model.addAttribute("departamentos", departamentoService.getAll());
 		return "carrera/update";
 	}
 

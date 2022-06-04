@@ -61,7 +61,7 @@
           <div class="card-body">
             <div>Materia</div>
             <select th:field="*{materia}">
-              <option th:each="m:${materia}" th:value="${(m.id)}" th:text="${m.nombreMateria}"/>
+              <option th:each="m:${materias}" th:value="${(m.id)}" th:text="${m.nombreMateria}"/>
             </select>
             <div>Profesor</div>
             <select th:field="*{profesores}">
