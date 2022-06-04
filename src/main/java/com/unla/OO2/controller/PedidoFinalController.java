@@ -34,6 +34,19 @@ public class PedidoFinalController {
 	@Autowired
 	private EspacioService espacioService;
 	
+	private void baseAttributerForUserForm(Model model, PedidoFinal pedidoFinal,String activeTab) {
+		model.addAttribute("index", pedidoFinal);
+		model.addAttribute(activeTab,"active");
+	}
+	
+	@GetMapping("/index")
+	public String index(Model model) {
+		baseAttributerForUserForm(model, new PedidoFinal(), "listTab");
+		List<PedidoFinal> lst = pedidoFinalService.getAll();		
+		model.addAttribute("pedidosFinales",lst);
+		return "pedidoFinal/index";
+	}
+	
 	@GetMapping("/newPedidoFinal/{id}")
 	public String createFinal(Model model, @PathVariable("id") int id) {
 		model.addAttribute("pedidoFinal", new PedidoFinal());

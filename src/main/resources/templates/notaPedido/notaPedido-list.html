@@ -9,7 +9,7 @@
         <th>Turno solicitado</th>
         <th>Aula solicitada</th>
         <th>Cantidad de estudiantes</th>
-        <th>Materia</th>
+        <th>Catedra</th>
         <th>Observaciones</th>
         <th>Asignada</th>
         <th>Vista</th>
@@ -28,7 +28,7 @@
         <td><span th:text="${nota.turno}" /></td>
         <td><span th:text="${nota.aula}" /></td>
         <td><span th:text="${nota.cantEstudiantes}" /></td>
-        <td><span th:text="${nota.catedra.materia.nombreMateria}" /></td>
+        <td><span th:text="${nota.catedra.materia.nombreMateria} + ' ' + ${nota.catedra.getProfesores()}" /></td>
         <td><span th:text="${nota.observaciones}" /></td>
         <td><span th:text="${nota.asignado}" /></td>
         <td><a th:href="@{/notaPedido/{id}(id=${nota.id})}" style="color:#FFFFFF" ;>View</a></td>
