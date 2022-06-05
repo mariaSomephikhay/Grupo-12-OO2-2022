@@ -100,7 +100,7 @@
       <button class="btn btn-lg btn-primary btn-block" type="submit" >Eliminar</button>
       </form>
       <form th:if="${curso.asignado==false and #authorization.expression('hasRole(''ROLE_ADMIN'')')}" action="#" class="btn btn-lg btn-primary btn-block" th:action="@{/pedidoFinal/newPedidoFinal/{id}(id=${curso.id})}" method="get">
-        <button th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="btn btn-lg btn-primary btn-block" type="submit">Asignar un espacio al pedido</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Asignar un espacio al pedido</button>
       </form>
       </div>
     </div>
