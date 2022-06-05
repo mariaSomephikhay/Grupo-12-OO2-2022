@@ -24,8 +24,8 @@ public class Catedra {
 	private Materia materia;
 	@Size(min=1)
 	@ManyToMany(fetch = FetchType.LAZY)	
-	@JoinTable(name = "catedra_profesores", joinColumns=@JoinColumn(name="profesores_id"),
-	inverseJoinColumns=@JoinColumn(name="catedra_id"))
+	@JoinTable(name = "catedra_profesores", joinColumns=@JoinColumn(name="catedra_id"),
+	inverseJoinColumns=@JoinColumn(name="profesores_id"))
 	private Set<Profesor> profesores;
 	public Set<Profesor> getProfesores() {
 		return profesores;
