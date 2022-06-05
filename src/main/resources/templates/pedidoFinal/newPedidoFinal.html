@@ -85,6 +85,7 @@
             
             <form action="#" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get" >
             <div>Espacios</div>
+            <span th:if="${espaciosT==null and espaciosL==null}">No hay espacios disponibles en la/el fecha/turno solicitada/o. Ingrese espacios</span>
             <select id="seleccionarEspacio" th:field="*{espacio}" class="form-control form-select-lg mb-3">
               <div th:if="${espaciosT!=null}">
                 <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Fecha:' + ${e.fecha} + ' Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
@@ -94,7 +95,7 @@
               </div>
             </select>
             <button id="asignar" class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
-          </form>
+          	</form>
           </div>
           <div th:if="${notaPedido instanceof T(com.unla.OO2.entity.Curso)}">
             <div>Codigo de curso</div>
@@ -108,6 +109,7 @@
           
 	          <form th:if="${notaPedido.porcPresencialidad>25}" action="#" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get" >
 	            <div>Espacios</div>
+	            <span th:if="${espaciosT==null and espaciosL==null}">No hay espacios disponibles en las/el fechas/turno solicitadas/o. Ingrese espacios</span>
 	            <select th:field="*{espacio}" class="form-control form-select-lg mb-3">
 	              <div th:if="${espaciosT!=null}">
 	                <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
@@ -120,6 +122,7 @@
 	          </form>
 	          <form th:if="${notaPedido.porcPresencialidad==25}" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get">
 	            <div>Espacios</div>
+	            <span th:if="${espaciosT==null and espaciosL==null}">No hay espacios disponibles en las/el fechas/turno solicitadas/o. Ingrese espacios</span>
 	            <select th:field="*{espacio}" class="form-control form-select-lg mb-3">
 	              <div th:if="${espaciosT!=null}">
 	                <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Fecha:' + ${e.fecha} + ' Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>

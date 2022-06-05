@@ -52,15 +52,17 @@ public class PedidoFinalController {
 		model.addAttribute("pedidoFinal", new PedidoFinal());
 		NotaPedido np = notaPedidoService.findById(id);
 		model.addAttribute("notaPedido",np);
+		List<Espacio> espacioT = new ArrayList<Espacio>();
+		List<Espacio> espacioL = new ArrayList<Espacio>();
 		if (np instanceof Final) {
-			model.addAttribute("espaciosT", espacioService.traerConAulaTradicionalPorTurnoYFechaLibres(np.getTurno(), ((Final)np).getFechaExamen().toString()));
-			model.addAttribute("espaciosL", espacioService.traerConAulaLaboratorioPorTurnoYFechaLibres(np.getTurno(), ((Final)np).getFechaExamen().toString()));
+			espacioT = espacioService.traerConAulaTradicionalPorTurnoYFechaLibres(np.getTurno(), ((Final)np).getFechaExamen().toString());
+			espacioL = espacioService.traerConAulaLaboratorioPorTurnoYFechaLibres(np.getTurno(), ((Final)np).getFechaExamen().toString());
+			//model.addAttribute("espaciosT", espacioT);
+			//model.addAttribute("espaciosL", espacioService.traerConAulaLaboratorioPorTurnoYFechaLibres(np.getTurno(), ((Final)np).getFechaExamen().toString()));
 		}else {
 			Curso c = (Curso)np;
 			LocalDate fechaI = c.getFechaInicio();
 			LocalDate fechaF = c.getFechaFin();
-			List<Espacio> espacioT = new ArrayList<Espacio>();
-			List<Espacio> espacioL = new ArrayList<Espacio>();
 			//calculo para saber la cantidad de clases de un curso;
 			int semanas = 0;
 			LocalDate fechaAux = fechaI;
@@ -104,17 +106,18 @@ public class PedidoFinalController {
 				espacioT = espacioService.traerConAulaTradicionalPorTurnoYEntreFechasLibres(np.getTurno(), fechaI.toString(), fechaF.toString());
 				espacioL = espacioService.traerConAulaTradicionalPorTurnoYEntreFechasLibres(np.getTurno(), fechaI.toString(), fechaF.toString());
 			}
-			if (espacioT.size()!=0) {
-				model.addAttribute("espaciosT", espacioT);
-			}else {
-				model.addAttribute("espaciosT", null);
-			}
-			if (espacioL.size()!=0) {
-				model.addAttribute("espaciosL", espacioL);
-			}else {
-				model.addAttribute("espaciosL", null);
-			}	
+			
 		}
+		if (espacioT.size()!=0) {
+			model.addAttribute("espaciosT", espacioT);
+		}else {
+			model.addAttribute("espaciosT", null);
+		}
+		if (espacioL.size()!=0) {
+			model.addAttribute("espaciosL", espacioL);
+		}else {
+			model.addAttribute("espaciosL", null);
+		}	
 		return "pedidoFinal/newPedidoFinal";
 	}
 
