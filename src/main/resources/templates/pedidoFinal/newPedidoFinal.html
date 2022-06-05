@@ -13,7 +13,14 @@
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">  
+    <script> 
+    $(document).ready(function(){
+		if($('#seleccionarEspacio').has('option').length == 0) {
+	      	$("#asignar").hide();
+	    }
+	});
+    </script>
     <style>
       html,
       body {
@@ -78,7 +85,7 @@
             
             <form action="#" th:action="@{/pedidoFinal/createPedidoFinal/{id}(id=${notaPedido.id})}" th:object="${pedidoFinal}" method="get" >
             <div>Espacios</div>
-            <select th:field="*{espacio}" class="form-control form-select-lg mb-3">
+            <select id="seleccionarEspacio" th:field="*{espacio}" class="form-control form-select-lg mb-3">
               <div th:if="${espaciosT!=null}">
                 <option th:each="e:${espaciosT}" th:value="${(e.id)}" th:text="'Fecha:' + ${e.fecha} + ' Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA TRADICIONAL'"/>
               </div>
@@ -86,7 +93,7 @@
               <option th:each="e:${espaciosL}" th:value="${(e.id)}" th:text="'Fecha:' + ${e.fecha} + ' Aula: ' + ${e.aula.numero} + ' Edificio: ' + ${e.aula.getEdificio().nombre} + ' TIPO DE AULA LABORATORIO'"/>
               </div>
             </select>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
+            <button id="asignar" class="btn btn-lg btn-primary btn-block" type="submit" >Asignar espacio</button>
           </form>
           </div>
           <div th:if="${notaPedido instanceof T(com.unla.OO2.entity.Curso)}">
