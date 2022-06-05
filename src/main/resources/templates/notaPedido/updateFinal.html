@@ -89,7 +89,7 @@
       <form th:if="${final.asignado==false}" action="#" class="btn btn-lg btn-primary btn-block" th:action="@{/notaPedido/deleteFinal/{id}(id=${final.id})}" method="post">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Eliminar</button>
       </form>
-      <form th:if="${final.asignado==false}" action="#" class="btn btn-lg btn-primary btn-block" th:action="@{/pedidoFinal/newPedidoFinal/{id}(id=${final.id})}" method="get">
+      <form th:if="${final.asignado==false and #authorization.expression('hasRole(''ROLE_ADMIN'')')}" action="#" class="btn btn-lg btn-primary btn-block" th:action="@{/pedidoFinal/newPedidoFinal/{id}(id=${final.id})}" method="get">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Asignar un espacio al pedido</button>
       </form>
     </div>

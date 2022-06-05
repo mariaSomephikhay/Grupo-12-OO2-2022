@@ -31,7 +31,7 @@
         <td><span th:text="${nota.catedra.materia.nombreMateria} + ' ' + ${nota.catedra.getProfesores()}" /></td>
         <td><span th:text="${nota.observaciones}" /></td>
         <td><span th:text="${nota.asignado}" /></td>
-        <td><a th:href="@{/notaPedido/{id}(id=${nota.id})}" style="color:#FFFFFF" ;>Modifinar / Eliminar / Asignar</a></td>
+        <td><a th:href="@{/notaPedido/{id}(id=${nota.id})}" style="color:#FFFFFF" ;>Modificar/ Eliminar/ Asignar</a></td>
       </tr>
       <button class="btn btn-lg btn-primary btn-block">
       <a href="/notaPedido/newFinal" style="text-decoration: none; color: inherit;">
