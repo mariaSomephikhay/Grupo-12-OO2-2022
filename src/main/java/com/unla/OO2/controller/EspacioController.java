@@ -47,6 +47,7 @@ public class EspacioController {
 
 	@PostMapping("/createEspacio")
 	public String createEspacio(@Valid @ModelAttribute("espacio") Espacio espacio) {
+		espacio.setLibre(true);
 		service.insertOrUpdate(espacio);
 		return "redirect:index";
 	}

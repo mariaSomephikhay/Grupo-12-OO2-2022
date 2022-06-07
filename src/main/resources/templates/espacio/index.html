@@ -94,9 +94,8 @@
 				          <h2 class="form-signin-heading">El espacio está disponible para su creación</h2>
 				          <div class="card-body">
 					          <input type="date" class="form-control search" th:field="*{fecha}" readonly />
-					          <input type="boolean" class="form-control" th:field="*{libre}" value="true" readonly />
 					          <input type="text" class="form-control" th:field="*{turno}" readonly/>
-					          <div>Aula</div>					         
+					          <div>Aula</div>
 					          <select readonly th:field="*{aula}" >
 					    	  <option th:each="a:${aulas}" th:value="${(a.id)}" th:text="${'Aula numero: ' + idAula + ' Edificio: ' + a.edificio.nombre}" th:if="${a.numero} == ${idAula}">
 					          </select>
