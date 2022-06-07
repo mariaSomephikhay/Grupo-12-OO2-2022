@@ -9,14 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity 
-@Data
+@Getter @Setter @NoArgsConstructor
 @Table(name="user")
 public class User{
 	@Id
@@ -37,6 +39,12 @@ public class User{
 	private int dni;
 	@Column(name="email")
 	private String email;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="departamento_id", nullable=true)
+	private Departamento departamento;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="carrera_id", nullable=true)
+	private Carrera carrera;
 	@Size(min=1)
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles", joinColumns=@JoinColumn(name="user_id"),
@@ -48,4 +56,5 @@ public class User{
 	public String getUsername() {
 		return username;
 	}
+	
 }

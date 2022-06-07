@@ -10,13 +10,14 @@
         <th>Aula solicitada</th>
         <th>Cantidad de estudiantes</th>
         <th>Catedra</th>
+        <th class="d-none">Departamento</th>
         <th>Observaciones</th>
         <th>Asignada</th>
         <th>Vista</th>
       </tr>
     </thead>
     <tbody>
-      <tr th:each="nota : ${notas}">
+      <tr th:each="nota : ${notas}" class="d-none">
         <td><span th:text="${nota.fechaCreacion}" /></td>
         <span th:text="${fechaCreacion}" />
         <td th:if="${nota instanceof T(com.unla.OO2.entity.Final)}">
@@ -29,9 +30,10 @@
         <td><span th:text="${nota.aula}" /></td>
         <td><span th:text="${nota.cantEstudiantes}" /></td>
         <td><span th:text="${nota.catedra.materia.nombreMateria} + ' ' + ${nota.catedra.getProfesores()}" /></td>
+        <td><span th:text="${nota.catedra.materia.carrera.departamento.departamento}" class="d-none"/></td>
         <td><span th:text="${nota.observaciones}" /></td>
         <td><span th:text="${nota.asignado}" /></td>
-        <td><a th:href="@{/notaPedido/{id}(id=${nota.id})}" style="color:#FFFFFF" ;>Modificar/ Eliminar/ Asignar</a></td>
+        <td><a th:href="@{/notaPedido/{id}(id=${nota.id})}" style="color:#FFFFFF;">Modificar/ Eliminar/ Asignar</a></td>
       </tr>
       <button class="btn btn-lg btn-primary btn-block">
       <a href="/notaPedido/newFinal" style="text-decoration: none; color: inherit;">

@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.unla.OO2.Exception.FieldValidation;
 import com.unla.OO2.Exception.UsernameOrIdNotFound;
 import com.unla.OO2.entity.User;
 import com.unla.OO2.repository.RoleRepository;
+import com.unla.OO2.service.ICarreraService;
+import com.unla.OO2.service.IDepartamentoService;
 import com.unla.OO2.service.UserService;
 
 @Controller
@@ -25,7 +26,13 @@ public class UserController {
 
 	@Autowired
 	RoleRepository roleRepository;
+	
+	@Autowired
+	private IDepartamentoService departamentoService;
 
+	@Autowired
+	private ICarreraService carreraService;
+	
 	@GetMapping({"/","/login"})
 	public String index() {
 		return "index";
@@ -35,6 +42,8 @@ public class UserController {
 		model.addAttribute("userForm", user);
 		model.addAttribute("userList", userService.getAllUsers());
 		model.addAttribute("roles",roleRepository.findAll());
+		model.addAttribute("departamentos",departamentoService.getAll());
+		model.addAttribute("carreras",carreraService.getAll());
 		model.addAttribute(activeTab,"active");
 	}
 

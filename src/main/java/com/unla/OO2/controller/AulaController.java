@@ -35,7 +35,7 @@ public class AulaController {
 	@GetMapping("/index")
 	public String index(Model model) {
 		baseAttributerForUserForm(model, new Aula(), "listTab" );
-		List<Aula> lst = aulaService.getAll();		
+		List<Aula> lst = aulaService.getAll();
 		model.addAttribute("aulas",lst);
 		return "aula/index";
 	}

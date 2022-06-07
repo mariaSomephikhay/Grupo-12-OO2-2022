@@ -101,6 +101,8 @@ public class UserServiceImpl implements UserService{
 		to.setDni(from.getDni());
 		to.setEmail(from.getEmail());
 		to.setRoles(from.getRoles());
+		to.setDepartamento(from.getDepartamento());
+		to.setCarrera(from.getCarrera());
 	}
 
 	@Override

@@ -28,7 +28,7 @@ public class EdificioController {
 	@GetMapping("/index")
 	public String index(Model model) {
 		baseAttributerForUserForm(model, new Edificio(), "listTab" );
-		List<Edificio> lst = edificioService.getAll();		
+		List<Edificio> lst = edificioService.getAll();
 		model.addAttribute("edificios",lst);
 		return "edificio/index";
 	}
