@@ -14,6 +14,32 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <script type="text/javascript" th:inline="javascript">
+	    //APARECE ERROR PERO ES PORQUE NO SE DETECTA EL THYMELEAF DENTRO DEL JAVASCRIPT
+	    //FUNCIONA TODO, NO HACER CASO A LOS ERRORES
+	    /*<![CDATA[*/
+		document.addEventListener("DOMContentLoaded", function () { 
+			element = false
+			let theList = [[${#authentication.getPrincipal().getAuthorities()}]]
+			let aTags = document.getElementsByTagName("option");
+			let found;
+			for (i = 0; i < theList.length; i++) {
+				/*[# th:each="catedra : ${catedras}"]*/
+				if(theList[i].authority == [[${catedra.materia.carrera.departamento.departamento}]]){
+					for(let i = 0; i < aTags.length; i++) {
+						let searchText = [[${catedra.materia.nombreMateria}]];
+						if(aTags[i].textContent.split('[')[0] == searchText+' ') {
+							found = aTags[i]
+							found.style.display = 'block';
+						 
+						}
+					}
+				}
+				/*[/]*/	
+			}
+		});
+		/*]]>*/
+	</script>
     <style>
       html,
       body {
@@ -73,7 +99,7 @@
             <input type="text" class="form-control" th:field="*{cantEstudiantes}"/>
             <div>Catedras</div>
             <select th:field="*{catedra}">
-              <option th:each="c:${catedras}" th:value="${(c.id)}" th:text="${c.materia.nombreMateria} + ' ' + ${c.getProfesores()}"/>
+              <option style="display:none;" th:each="c:${catedras}" th:value="${(c.id)}" th:text="${c.materia.nombreMateria} + ' ' + ${c.getProfesores()}"/>
             </select>
             <div>Observaciones</div>
             <input type="text" class="form-control" th:field="*{observaciones}"/>
