@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-     <tr th:each="catedra : ${catedras}">
+     <tr th:each="catedra : ${catedras}" class="d-none">
         <td th:text="${catedra.id}"></td>
         <td th:text="${catedra.materia.nombreMateria}"></td>
         <td th:text="${catedra.materia.carrera.nombreCarrera}"></td>
