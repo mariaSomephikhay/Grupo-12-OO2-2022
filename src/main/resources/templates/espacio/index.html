@@ -98,7 +98,7 @@
 					          <input type="text" class="form-control" th:field="*{turno}" readonly/>
 					          <div>Aula</div>					         
 					          <select readonly th:field="*{aula}" >
-					    	  <option th:each="a:${aulas}" th:value="${(a.id)}" th:text="${idAula}" th:if="${a.numero} == ${idAula}">
+					    	  <option th:each="a:${aulas}" th:value="${(a.id)}" th:text="${'Aula numero: ' + idAula + ' Edificio: ' + a.edificio.nombre}" th:if="${a.numero} == ${idAula}">
 					          </select>
 					           <p>Si el aula indicada no existe, el espacio no se creará.</p>
 				          </div>
