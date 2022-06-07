@@ -10,7 +10,7 @@
         <th>Aula solicitada</th>
         <th>Cantidad de estudiantes</th>
         <th>Catedra</th>
-        <th class="d-none">Departamento</th>
+        <th>Departamento</th>
         <th>Observaciones</th>
         <th>Asignada</th>
         <th>Vista</th>
@@ -30,7 +30,7 @@
         <td><span th:text="${nota.aula}" /></td>
         <td><span th:text="${nota.cantEstudiantes}" /></td>
         <td><span th:text="${nota.catedra.materia.nombreMateria} + ' ' + ${nota.catedra.getProfesores()}" /></td>
-        <td><span th:text="${nota.catedra.materia.carrera.departamento.departamento}" class="d-none"/></td>
+        <td><span th:text="${nota.catedra.materia.carrera.departamento.departamento}"/></td>
         <td><span th:text="${nota.observaciones}" /></td>
         <td><span th:text="${nota.asignado}" /></td>
         <td><a th:href="@{/notaPedido/{id}(id=${nota.id})}" style="color:#FFFFFF;">Modificar/ Eliminar/ Asignar</a></td>
