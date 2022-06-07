@@ -31,7 +31,7 @@
 					let searchText = [[${nota.catedra.materia.carrera.departamento.departamento}]];
 					if(aTags[i].textContent == searchText) {
 						found = aTags[i]
-					    found.parentNode.classList.remove("d-none");
+					    found.parentNode.parentNode.classList.remove("d-none");
 					}
 				}
 			}
