@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="htpp://www.thymeleaf.org">
+
       <table id="userList" class="table table-bordered table-hover table-striped border-0">
     <thead class="thead border-0" style="background-color: #A6A0E3;">
       <tr>
@@ -7,14 +8,15 @@
         <th scope="col">Detalle</th>
         <th scope="col">Espacio Asignado</th>
         <th scope="col">Detalle</th>
+        <th style="display:none;" scope="col">Departamento</th>
       </tr>
     </thead>
     <tbody>
-      <tr th:each="pedidoFinal : ${pedidosFinales}">
+      <tr th:each="pedidoFinal : ${pedidosFinales}" class="d-none">
         <td th:text="${pedidoFinal.notaPedido.id}"></td>
         <td>
           <span>
-          <a th:href="@{/notaPedido/{id}(id=${pedidoFinal.notaPedido.id})}" style="color:#FFFFFF" ;>View</a>
+          <a th:href="@{/notaPedido/{id}(id=${pedidoFinal.notaPedido.id})}" style="color:#FFFFFF;">View</a>
           </span>
         </td>
         <td th:text="${pedidoFinal.espacio.id}"></td>
@@ -22,6 +24,9 @@
           <span>
           <a th:href="@{/espacio/{id}(id=${pedidoFinal.espacio.id})}" style="color:#FFFFFF" ;>View</a>
           </span>
+        </td>
+         <td style="display:none;">
+          <span th:text="${pedidoFinal.notaPedido.catedra.materia.carrera.departamento.departamento}" />
         </td>
       </tr>
     </tbody>
