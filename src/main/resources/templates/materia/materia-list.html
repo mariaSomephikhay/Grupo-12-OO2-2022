@@ -5,15 +5,17 @@
         <th scope="col">Id</th>
         <th scope="col">Codigo Materia</th>
         <th scope="col">Materia</th>
+        <th scope="col">Departamento</th>
         <th scope="col">Carrera</th>
         <th scope="col">Vista</th>
       </tr>
     </thead>
     <tbody>
-      <tr th:each="materia : ${materias}">
+      <tr th:each="materia : ${materias}" class="d-none">
         <td th:text="${materia.id}"></td>
         <td th:text="${materia.codMateria}"></td>
         <td th:text="${materia.nombreMateria}"></td>
+		<td th:text="${materia.carrera.departamento.departamento}"></td>
         <td th:text="${materia.carrera.nombreCarrera}"></td>
         <td>
           <span>

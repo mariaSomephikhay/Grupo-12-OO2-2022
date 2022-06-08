@@ -14,6 +14,32 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+           <script type="text/javascript" th:inline="javascript">
+    //APARECE ERROR PERO ES PORQUE NO SE DETECTA EL THYMELEAF DENTRO DEL JAVASCRIPT
+    //FUNCIONA TODO, NO HACER CASO A LOS ERRORES
+    /*<![CDATA[*/
+	document.addEventListener("DOMContentLoaded", function () { 
+		element = false
+		let theList = [[${#authentication.getPrincipal().getAuthorities()}]]
+		let aTags = document.getElementsByTagName("td");
+		let found;
+		for (i = 0; i < theList.length; i++) {
+			/*[# th:each="materia : ${materias}"]*/
+			if(theList[i].authority == [[${materia.carrera.departamento.departamento}]]){
+				for(let i = 0; i < aTags.length; i++) {
+					let searchText = [[${materia.carrera.departamento.departamento}]];
+					if(aTags[i].textContent == searchText) {
+						found = aTags[i]
+					    found.parentNode.classList.remove("d-none");
+					}
+				}
+			}
+			/*[/]*/	
+		}
+	});
+	/*]]>*/
+	</script>
+    
     <style>
       html,
       body {
